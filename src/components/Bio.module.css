@@ -1,0 +1,41 @@
+.bioContainer {
+    display: flex;
+    align-items: center;
+    padding: 20px;
+    border: 2px solid #ccc; /* Light gray border */
+    border-radius: 8px; /* Rounded corners */
+    background-color: #f5f5f5; /* Light gray background */
+    max-width: 800px;
+    margin: 80px auto 20px;
+  }
+  
+  .imageContainer {
+    flex-shrink: 0; /* Prevents the image from resizing */
+    margin-right: 20px;
+  }
+  
+  .profileImage {
+    border-radius: 50%; /* Makes the image circular */
+  }
+  
+  .textContainer {
+    font-family: Arial, sans-serif;
+    color: #333;
+  }
+  
+  .textContainer h1 {
+    font-size: 1.8em;
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+  
+  .textContainer p {
+    font-size: 1em;
+    line-height: 1.6;
+  }
+  
+  /* Hiding the alt text */
+  .profileImage::after {
+    content: "";
+  }
+  
