@@ -1,5 +1,5 @@
 // pages/_app.js
-import Layout from '../components/Layout';
+import Layout from '../components/layout';
 import '../styles/globals.css'; // Global styles
 import 'bootstrap/dist/css/bootstrap.min.css';
 
