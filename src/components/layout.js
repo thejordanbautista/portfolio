@@ -1,13 +1,6 @@
 // components/Layout.js
-import Navbar from './Navbar';
-
 const Layout = ({ children }) => {
-  return (
-    <>
-      <Navbar />
-      <main>{children}</main>
-    </>
-  );
+  return <>{children}</>;
 };
 
 export default Layout;

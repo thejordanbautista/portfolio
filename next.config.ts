@@ -2,7 +2,13 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   images: {
-    domains: ['media.licdn.com','freight.cargo.site'],
+    remotePatterns: [
+      { protocol: 'https', hostname: 'freight.cargo.site' },
+      { protocol: 'https', hostname: 'media.licdn.com' },
+      { protocol: 'https', hostname: 'upload.wikimedia.org' },
+      { protocol: 'https', hostname: 'cdn-icons-png.flaticon.com' },
+      { protocol: 'https', hostname: 'assets.streamlinehq.com' },
+    ],
   },
 };
 

@@ -1,10 +1,17 @@
-@import 'bootstrap/dist/css/bootstrap.min.css';
-
-/* Import Bootstrap CSS */
-@import 'bootstrap/dist/css/bootstrap.min.css';
+/* Bootstrap is imported once in _app.js — no duplicate needed here */
 
 /* Tailwind CSS Directives */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* Base resets */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+}
 
