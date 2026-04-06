@@ -1,0 +1,154 @@
+/* ── Page shell ─────────────────────────────────────────────── */
+.page {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #f7f7f7 0%, #d6d6d6 50%, #f0f0f7 100%);
+  background-size: 300% 300%;
+  animation: gradient 8s alternate infinite;
+}
+
+@keyframes gradient {
+  0%   { background-position: 0% 50%; }
+  100% { background-position: 100% 50%; }
+}
+
+.container {
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 32px 24px 64px;
+}
+
+/* ── Back nav ───────────────────────────────────────────────── */
+.backRow {
+  margin-bottom: 32px;
+}
+
+.backLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: #444;
+  text-decoration: none;
+  font-size: 0.9rem;
+  opacity: 0.75;
+  transition: opacity 0.2s;
+}
+
+.backLink:hover { opacity: 1; }
+
+.backIcon {
+  width: 16px;
+  height: 16px;
+  opacity: 0.6;
+}
+
+/* ── Header ─────────────────────────────────────────────────── */
+.header {
+  margin-bottom: 40px;
+}
+
+.title {
+  font-size: 2.4rem;
+  font-weight: 700;
+  color: #111;
+  margin: 0 0 8px;
+}
+
+.subtitle {
+  font-size: 1.05rem;
+  color: #555;
+  margin: 0;
+}
+
+/* ── App grid ───────────────────────────────────────────────── */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+  gap: 20px;
+}
+
+/* ── Card ───────────────────────────────────────────────────── */
+.card {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  background: rgba(255, 255, 255, 0.6);
+  border: 1.5px solid rgba(255, 255, 255, 0.5);
+  border-radius: 14px;
+  padding: 20px;
+  text-decoration: none;
+  color: inherit;
+  backdrop-filter: blur(8px);
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.08);
+  transition: transform 0.22s ease, box-shadow 0.22s ease;
+  cursor: pointer;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.14);
+}
+
+.card.soon {
+  opacity: 0.5;
+  cursor: default;
+  pointer-events: none;
+}
+
+.cardIcon {
+  flex-shrink: 0;
+  width: 56px;
+  height: 56px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.6rem;
+}
+
+.cardBody {
+  flex: 1;
+  min-width: 0;
+}
+
+.cardTitle {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #111;
+  margin: 0 0 4px;
+}
+
+.cardDesc {
+  font-size: 0.85rem;
+  color: #555;
+  line-height: 1.45;
+  margin: 0 0 10px;
+}
+
+.tagRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.tag {
+  background: rgba(0, 112, 243, 0.1);
+  color: #0070f3;
+  font-size: 0.72rem;
+  font-weight: 600;
+  padding: 2px 8px;
+  border-radius: 20px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.cardArrow {
+  font-size: 1.3rem;
+  color: #aaa;
+  flex-shrink: 0;
+}
+
+/* ── Responsive ─────────────────────────────────────────────── */
+@media (max-width: 760px) {
+  .title { font-size: 1.8rem; }
+  .grid  { grid-template-columns: 1fr; }
+}
