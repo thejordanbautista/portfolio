@@ -531,6 +531,101 @@
   color: var(--text-faint);
 }
 
+.projectImageEl {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover;
+}
+
+.projectImagePixel {
+  background:
+    radial-gradient(circle at 30% 30%, color-mix(in srgb, var(--accent) 18%, transparent), transparent 65%),
+    linear-gradient(135deg, var(--bg-surface), var(--bg-card));
+}
+
+.pixelArt {
+  position: relative !important;
+  width: auto !important;
+  height: auto !important;
+  max-width: 60%;
+  max-height: 75%;
+  object-fit: contain;
+  image-rendering: pixelated;
+  image-rendering: -moz-crisp-edges;
+  filter: drop-shadow(0 6px 14px rgba(0, 0, 0, 0.25));
+  transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.projectCard:hover .pixelArt {
+  transform: translateY(-4px) rotate(-3deg);
+}
+
+/* ================================
+   MOMENTS GALLERY (in About)
+================================ */
+
+.momentsRow {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 28px;
+  margin-top: 80px;
+  padding-top: 60px;
+  border-top: 1px solid var(--border);
+}
+
+@media (max-width: 760px) {
+  .momentsRow {
+    grid-template-columns: 1fr;
+    gap: 36px;
+    margin-top: 56px;
+    padding-top: 40px;
+  }
+}
+
+.moment {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  transform: rotate(var(--rot, 0deg));
+  transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.moment:hover {
+  transform: rotate(0deg) translateY(-4px);
+}
+
+.momentImageWrap {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  background: var(--bg-surface);
+  box-shadow: 0 18px 40px -20px rgba(0, 0, 0, 0.4);
+}
+
+.momentCaption {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 0 4px;
+}
+
+.momentLabel {
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--text-faint);
+}
+
+.momentText {
+  font-size: 0.88rem;
+  color: var(--text-muted);
+  line-height: 1.5;
+}
+
 .projectBody {
   padding: 26px;
   display: flex;

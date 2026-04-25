@@ -2,7 +2,11 @@ import Head from 'next/head';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
 import Navbar from '../components/Navbar';
-import HeadshotImg from '../images/HSFHeadshot.jpg';
+import HeadshotImg from '../images/jordan-headshot.jpg';
+import GradImg from '../images/jordan-grad.jpg';
+import SoccerImg from '../images/jordan-soccer.jpg';
+import FleaMarketImg from '../images/jordan-fleamarket.jpg';
+import DragoniteImg from '../images/dragonite.png';
 import styles from './home.module.css';
 
 /* ── Animation variants ── */
@@ -69,6 +73,30 @@ const projects = [
     tech: ['Next.js', 'React', 'PokéAPI'],
     demo: '/dev/pokedexle',
     accent: 'Pop Culture',
+    image: DragoniteImg,
+    imageAlt: 'Dragonite pixel sprite',
+    pixel: true,
+  },
+];
+
+const moments = [
+  {
+    img: SoccerImg,
+    label: 'Age 8',
+    caption: "Been built with this energy since the rec league.",
+    pos: 'center 30%',
+  },
+  {
+    img: GradImg,
+    label: 'Lehigh University',
+    caption: "B.S. Computer Science & Engineering, '23.",
+    pos: 'center 30%',
+  },
+  {
+    img: FleaMarketImg,
+    label: 'More Than Jordans',
+    caption: 'Running vintage and resell at LA flea markets.',
+    pos: 'center center',
   },
 ];
 
@@ -256,6 +284,32 @@ export default function Home() {
                 </div>
               </motion.div>
             </div>
+
+            {/* Moments gallery */}
+            <motion.div variants={stagger} className={styles.momentsRow}>
+              {moments.map((m, i) => (
+                <motion.figure
+                  key={i}
+                  variants={fadeUp}
+                  className={styles.moment}
+                  style={{ '--rot': `${(i - 1) * 1.5}deg` }}
+                >
+                  <div className={styles.momentImageWrap}>
+                    <Image
+                      src={m.img}
+                      alt={m.caption}
+                      fill
+                      sizes="(max-width: 760px) 90vw, 320px"
+                      style={{ objectFit: 'cover', objectPosition: m.pos }}
+                    />
+                  </div>
+                  <figcaption className={styles.momentCaption}>
+                    <span className={styles.momentLabel}>{m.label}</span>
+                    <span className={styles.momentText}>{m.caption}</span>
+                  </figcaption>
+                </motion.figure>
+              ))}
+            </motion.div>
           </motion.div>
         </section>
 
@@ -288,10 +342,23 @@ export default function Home() {
                   variants={fadeUp}
                   className={styles.projectCard}
                 >
-                  <div className={styles.projectImageSlot}>
-                    <span className={styles.projectImagePlaceholder}>
-                      Visual coming soon
-                    </span>
+                  <div
+                    className={`${styles.projectImageSlot} ${p.pixel ? styles.projectImagePixel : ''}`}
+                  >
+                    {p.image ? (
+                      <Image
+                        src={p.image}
+                        alt={p.imageAlt}
+                        className={p.pixel ? styles.pixelArt : styles.projectImageEl}
+                        width={p.pixel ? 220 : undefined}
+                        height={p.pixel ? 220 : undefined}
+                        sizes="(max-width: 760px) 90vw, 360px"
+                      />
+                    ) : (
+                      <span className={styles.projectImagePlaceholder}>
+                        Visual coming soon
+                      </span>
+                    )}
                   </div>
                   <div className={styles.projectBody}>
                     <div className={styles.projectMeta}>
