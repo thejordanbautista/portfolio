@@ -1,6 +1,8 @@
 import Head from 'next/head';
+import Image from 'next/image';
 import { motion } from 'framer-motion';
 import Navbar from '../components/Navbar';
+import HeadshotImg from '../images/HSFHeadshot.jpg';
 import styles from './home.module.css';
 
 /* ── Animation variants ── */
@@ -19,41 +21,43 @@ const stagger = {
 };
 
 /* ── Content ── */
-const services = [
+const focuses = [
   {
     num: '01',
     title: 'Web Applications',
-    desc: 'Custom Next.js & React apps built for speed, clarity, and longevity.',
-    bullets: ['Next.js / React', 'TypeScript', 'Postgres / Supabase'],
+    desc: 'Modern web apps built with Next.js, React, and TypeScript. Performance, accessibility, and clarity from the first commit.',
+    bullets: ['Next.js / React', 'TypeScript', 'Postgres'],
   },
   {
     num: '02',
     title: 'Automation',
-    desc: 'Python scripts, integrations, and workflows that quietly save hours every week.',
-    bullets: ['Python / Django', 'API integrations', 'Workflow design'],
+    desc: 'Python and workflow tooling that turns manual processes into background tasks. The boring stuff disappears.',
+    bullets: ['Python / Django', 'API integrations', 'Workflows'],
   },
   {
     num: '03',
     title: 'AI Integrations',
-    desc: 'OpenAI, Claude, and custom LLM tooling wired into the products you already use.',
-    bullets: ['OpenAI / Claude', 'RAG pipelines', 'Internal AI tools'],
+    desc: 'Working with OpenAI and Claude to build practical AI features into real products — not demos, products.',
+    bullets: ['OpenAI / Claude', 'RAG', 'Prompt design'],
   },
   {
     num: '04',
-    title: 'Technical Consulting',
-    desc: 'Architecture decisions, code reviews, and a clear plan for what to build next.',
-    bullets: ['Architecture', 'Code review', 'Tech strategy'],
+    title: 'APIs & Backends',
+    desc: 'Designing REST APIs and the systems behind them. Comfortable across the stack and the deploy pipeline.',
+    bullets: ['Django / Node', 'REST APIs', 'AWS'],
   },
 ];
 
 const marqueeItems = [
-  'Available for projects',
-  'Web apps',
-  'Automation',
-  'AI integrations',
-  'Consulting',
-  'Based in LA',
-  'Remote-friendly',
+  'Software Engineer',
+  'Los Angeles',
+  'Next.js',
+  'Python',
+  'AI',
+  'TypeScript',
+  'Always Building',
+  'Music',
+  'Vintage',
 ];
 
 const projects = [
@@ -64,7 +68,6 @@ const projects = [
       'A web-based Pokémon silhouette guessing game. Pulls live data from PokéAPI and keeps score across rounds.',
     tech: ['Next.js', 'React', 'PokéAPI'],
     demo: '/dev/pokedexle',
-    github: 'https://github.com/thejordanbautista',
     accent: 'Pop Culture',
   },
 ];
@@ -74,10 +77,10 @@ export default function Home() {
   return (
     <>
       <Head>
-        <title>Jordan Bautista-Lazo — Software Engineer & Tech Consultant</title>
+        <title>Jordan Bautista-Lazo — Software Engineer</title>
         <meta
           name="description"
-          content="Software engineer and tech consultant in Los Angeles. Building web apps, automation, and AI tools for businesses that need things shipped right."
+          content="Personal site of Jordan Bautista-Lazo, a software engineer based in Los Angeles."
         />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
@@ -90,34 +93,49 @@ export default function Home() {
         {/* ══════════════ HERO ══════════════ */}
         <section className={styles.hero} id="hero">
           <motion.div
-            className={styles.heroContent}
+            className={styles.heroGrid}
             variants={stagger}
             initial="hidden"
             animate="show"
           >
-            <motion.div variants={fadeUp} className={styles.statusRow}>
-              <span className={styles.statusDot} />
-              <span className={styles.statusText}>Available for new projects</span>
-            </motion.div>
+            <div className={styles.heroText}>
+              <motion.div variants={fadeUp} className={styles.statusRow}>
+                <span className={styles.statusDot} />
+                <span className={styles.statusText}>Based in Los Angeles</span>
+              </motion.div>
 
-            <motion.h1 variants={fadeUp} className={styles.heroTitle}>
-              Software that <span className={styles.heroAccent}>ships.</span><br />
-              Systems that <span className={styles.heroAccent}>scale.</span><br />
-              Results you can <span className={styles.heroAccent}>measure.</span>
-            </motion.h1>
+              <motion.h1 variants={fadeUp} className={styles.heroTitle}>
+                Hi, I'm <span className={styles.heroAccent}>Jordan.</span>
+              </motion.h1>
 
-            <motion.p variants={fadeUp} className={styles.heroSub}>
-              I'm Jordan — a software engineer and technical consultant in Los Angeles.
-              I help teams build clean web apps, automate the boring parts of their
-              business, and ship AI tooling that actually earns its keep.
-            </motion.p>
+              <motion.p variants={fadeUp} className={styles.heroRole}>
+                Software Engineer
+              </motion.p>
 
-            <motion.div variants={fadeUp} className={styles.heroCta}>
-              <a href="#services" className={styles.btnPrimary}>
-                See What I Do
-                <span className={styles.btnArrow}>→</span>
-              </a>
-              <a href="#contact" className={styles.btnSecondary}>Start a Project</a>
+              <motion.p variants={fadeUp} className={styles.heroBio}>
+                I build clean web applications, automate the boring parts of work,
+                and occasionally make games about Pokémon. Currently coordinating
+                technology on major civic projects across Los Angeles.
+              </motion.p>
+
+              <motion.div variants={fadeUp} className={styles.heroCta}>
+                <a href="#contact" className={styles.btnPrimary}>
+                  Get in Touch
+                  <span className={styles.btnArrow}>→</span>
+                </a>
+                <a href="#projects" className={styles.btnSecondary}>See Projects</a>
+              </motion.div>
+            </div>
+
+            <motion.div variants={fadeUp} className={styles.heroPhoto}>
+              <Image
+                src={HeadshotImg}
+                alt="Jordan Bautista-Lazo"
+                fill
+                priority
+                sizes="(max-width: 820px) 320px, 38vw"
+                className={styles.heroPhotoImg}
+              />
             </motion.div>
           </motion.div>
 
@@ -146,7 +164,7 @@ export default function Home() {
           </div>
         </section>
 
-        {/* ══════════════ SERVICES ══════════════ */}
+        {/* ══════════════ FOCUS / WHAT I DO ══════════════ */}
         <section className={styles.section} id="services">
           <motion.div
             className={styles.sectionInner}
@@ -156,18 +174,19 @@ export default function Home() {
             viewport={{ once: true, margin: '-80px' }}
           >
             <motion.p variants={fadeUp} className={styles.sectionLabel}>
-              <span className={styles.sectionNum}>01</span> Services
+              <span className={styles.sectionNum}>01</span> What I Do
             </motion.p>
             <motion.h2 variants={fadeUp} className={styles.sectionTitle}>
-              What I build for clients.
+              Where I focus.
             </motion.h2>
             <motion.p variants={fadeUp} className={styles.sectionLead}>
-              Engagements range from one-off automation scripts to full web platforms.
-              Below is what I do most often — but if you have something weirder, ask.
+              I build software end-to-end and gravitate toward problems that mix
+              engineering with creative thinking. These are the areas I spend most
+              of my time in.
             </motion.p>
 
             <motion.div variants={stagger} className={styles.servicesGrid}>
-              {services.map((s) => (
+              {focuses.map((s) => (
                 <motion.div key={s.num} variants={fadeUp} className={styles.serviceCard}>
                   <span className={styles.serviceNum}>{s.num}</span>
                   <h3 className={styles.serviceTitle}>{s.title}</h3>
@@ -196,28 +215,28 @@ export default function Home() {
               <span className={styles.sectionNum}>02</span> About
             </motion.p>
             <motion.h2 variants={fadeUp} className={styles.sectionTitle}>
-              Engineer first.<br />Consultant second.
+              A bit more<br />about me.
             </motion.h2>
 
             <div className={styles.aboutGrid}>
               <motion.div variants={fadeUp} className={styles.aboutText}>
                 <p>
-                  CS grad from Lehigh University, now leading technology coordination on
-                  major civic projects in Los Angeles. On the side, I co-run a software
-                  solutions business — websites, automation, and AI tooling for clients
-                  across the country.
+                  CS grad from Lehigh University. Currently coordinating technology
+                  on major civic projects in Los Angeles, working at the intersection
+                  of software, infrastructure, and community impact.
                 </p>
                 <p>
-                  I build the way I think: simple, direct, and obsessed with whether the
-                  thing actually works. Outside of code I'm at flea markets, digging
-                  through crates, or building tiny games about Pokémon for fun.
+                  I build the way I think: simple, direct, and obsessed with whether
+                  the thing actually works. Outside of the day job I'm digging for
+                  vintage tees, exploring LA's music scene, or building small projects
+                  for the fun of it.
                 </p>
               </motion.div>
 
               <motion.div variants={fadeUp} className={styles.aboutMeta}>
                 <div className={styles.metaBlock}>
                   <span className={styles.metaLabel}>Currently</span>
-                  <span className={styles.metaValue}>Tech Coordinator · LA</span>
+                  <span className={styles.metaValue}>Tech Coordinator · Los Angeles</span>
                 </div>
                 <div className={styles.metaBlock}>
                   <span className={styles.metaLabel}>Studied</span>
@@ -256,9 +275,9 @@ export default function Home() {
               Things I build for fun.
             </motion.h2>
             <motion.p variants={fadeUp} className={styles.sectionLead}>
-              My side projects live at the intersection of software and the things I
-              actually care about — music, vintage, Pokémon, pop culture. Client work is
-              private; this is the personality.
+              My side projects live at the intersection of software and the things
+              I actually care about — music, vintage, Pokémon, pop culture. This is
+              where the personality lives.
             </motion.p>
 
             <motion.div variants={stagger} className={styles.projectGrid}>
@@ -316,12 +335,11 @@ export default function Home() {
               <span className={styles.sectionNum}>04</span> Contact
             </motion.p>
             <motion.h2 variants={fadeUp} className={styles.sectionTitleLg}>
-              Got something to build?<br />
-              <span className={styles.heroAccent}>Let's talk.</span>
+              Let's <span className={styles.heroAccent}>connect.</span>
             </motion.h2>
             <motion.p variants={fadeUp} className={styles.contactSub}>
-              Open to consulting work, collaborations, and interesting problems.
-              Quick replies, no fluff.
+              Always open to a good conversation — opportunities, collaborations,
+              or just to talk shop.
             </motion.p>
 
             <motion.div variants={fadeUp} className={styles.contactCtaRow}>
@@ -366,7 +384,7 @@ export default function Home() {
         <footer className={styles.footer}>
           <div className={styles.footerInner}>
             <p className={styles.footerCopy}>© 2026 Jordan Bautista-Lazo</p>
-            <p className={styles.footerNote}>Designed and built in Los Angeles.</p>
+            <p className={styles.footerNote}>Built in Los Angeles.</p>
           </div>
         </footer>
 
