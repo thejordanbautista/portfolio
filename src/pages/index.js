@@ -1,147 +1,232 @@
 import Head from 'next/head';
-import Image from 'next/image';
+import { motion } from 'framer-motion';
+import Navbar from '../components/Navbar';
 import styles from './home.module.css';
 
-import LocationImage from '../images/location.png';
-import DegreeImage from '../images/Lehigh-University-logo.png';
-import morethanjordans from '../images/morethanjordans.jpg';
+/* ── Animation variants ── */
+const fadeUp = {
+  hidden: { opacity: 0, y: 28 },
+  show: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.65, ease: [0.22, 1, 0.36, 1] },
+  },
+};
 
+const stagger = {
+  hidden: {},
+  show: { transition: { staggerChildren: 0.12 } },
+};
+
+/* ── Content ── */
+const skills = [
+  'Python', 'JavaScript', 'TypeScript', 'React', 'Next.js',
+  'Node.js', 'Django', 'PostgreSQL', 'REST APIs', 'OpenAI API',
+  'AWS', 'Git', 'WordPress',
+];
+
+const projects = [
+  {
+    badge: 'Side Project',
+    title: "Who's That Pokémon?",
+    description:
+      'A web-based Pokémon silhouette guessing game. Pulls live data from PokéAPI and keeps score across rounds.',
+    tech: ['Next.js', 'React', 'PokéAPI'],
+    demo: '/dev/pokedexle',
+    github: 'https://github.com/thejordanbautista',
+  },
+];
+
+/* ── Page ── */
 export default function Home() {
   return (
-    <div className={styles.page}>
+    <>
       <Head>
         <title>Jordan Bautista-Lazo</title>
-        <meta name="description" content="Personal homepage" />
+        <meta name="description" content="Software engineer based in Los Angeles." />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
 
-      <main className={styles.container}>
-        {/* ================= HERO SECTION (FULL SCREEN) ================= */}
-        <section className={styles.heroSection}>
-          <div className={styles.threeCol}>
-            {/* LEFT COLUMN — ICON NAV */}
-            <div className={styles.iconColumn}>
-              <a href="/projects" aria-label="Projects">
-                <img
-                  src="https://cdn-icons-png.flaticon.com/512/1250/1250696.png"
-                  className={styles.navIcon}
-                  alt=""
-                />
-              </a>
-              <a href="/shop" aria-label="Shop">
-                <img
-                  src="https://cdn-icons-png.flaticon.com/512/3514/3514491.png"
-                  className={styles.navIcon}
-                  alt=""
-                />
-              </a>
-              <a href="http://linkedin.com/in/jordan-bautista-lazo/" aria-label="LinkedIn">
-                <img
-                  src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/ca/LinkedIn_logo_initials.png/960px-LinkedIn_logo_initials.png"
-                  className={styles.navIcon}
-                  alt=""
-                />
-              </a>
-              <a href="https://github.com/thejordanbautista" aria-label="LinkedIn">
-                <img
-                  src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/91/Octicons-mark-github.svg/2048px-Octicons-mark-github.svg.png"
-                  className={styles.navIcon}
-                  alt=""
-                />
-              </a>
-              <a href="mailto:jordanbautistalazo@gmail.com" aria-label="Contact">
-                <img
-                  src="https://cdn-icons-png.flaticon.com/512/732/732200.png"
-                  className={styles.navIcon}
-                  alt=""
-                />
-              </a>
-            </div>
+      <Navbar />
 
-            {/* CENTER COLUMN — TEXT */}
-            <div className={styles.textCol}>
-              <h1 className={`${styles.title} ${styles.typewriter}`}>
-                Hey, I'm <span className={styles.name}>Jordan Bautista-Lazo</span>
-              </h1>
-              <p className={styles.lead}>
-                I love automating systems, selling cool things, and live music. Whenever
-                any of the three link up, I'm all for it.
-                <br />
-                <br />
-                Something like an app that helps me automate my Depop sales and trade them
-                for concert tickets. PrizePicks will be on it in a week...
-              </p>
-            </div>
+      <main className={styles.main}>
 
-            {/* RIGHT COLUMN — PORTRAIT */}
-            <div className={styles.photoFrame}>
-              <Image
-                src="https://freight.cargo.site/w/900/q/75/i/O2668570368040557918646081908398/IMG3038-R01-021.jpg"
-                alt="Portrait of Jordan Bautista-Lazo"
-                width={350}
-                height={300}
-                className={styles.photoInner}
-                priority
-              />
-            </div>
-          </div>
+        {/* ══════════════ HERO ══════════════ */}
+        <section className={styles.hero} id="hero">
+          <motion.div
+            className={styles.heroContent}
+            variants={stagger}
+            initial="hidden"
+            animate="show"
+          >
+            <motion.p variants={fadeUp} className={styles.heroLabel}>
+              Software Engineer · Los Angeles
+            </motion.p>
+
+            <motion.h1 variants={fadeUp} className={styles.heroTitle}>
+              Jordan<br />Bautista‑Lazo
+            </motion.h1>
+
+            <motion.p variants={fadeUp} className={styles.heroSub}>
+              I build clean software, automate complex workflows,<br className={styles.br} />
+              and ship things that actually work.
+            </motion.p>
+
+            <motion.div variants={fadeUp} className={styles.heroCta}>
+              <a href="#projects" className={styles.btnPrimary}>View Work</a>
+              <a href="#contact" className={styles.btnSecondary}>Get in Touch</a>
+            </motion.div>
+          </motion.div>
+
+          <motion.div
+            className={styles.scrollHint}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 1.6, duration: 0.8 }}
+          >
+            <span className={styles.scrollLine} />
+          </motion.div>
         </section>
 
-        {/* ================= INFO SECTION (3 CARDS) ================= */}
-        <section className={styles.infoSection}>
-          <div className={styles.infoGrid}>
-            {/* Location */}
-            <div className={styles.topBox}>
-              <h4 className={styles.infoTitle}>Background</h4>
-              <p className={styles.infoValue}>Home: Portland, OR ✈ Los Angeles, CA</p>
-              <p className={styles.infoValue}>Heritage: Mexican &amp; Native American</p>
-              <p className={styles.infoValue}>Hermanos: 1 Younger brother in elementary school</p>
-              <p className={styles.infoValue}>Height: 6'6 when I stand on business</p>
-              <img
-                src={LocationImage.src}
-                alt="Location"
-                className={styles.infoImage}
-              />
+        {/* ══════════════ ABOUT ══════════════ */}
+        <section className={styles.section} id="about">
+          <motion.div
+            className={styles.sectionInner}
+            variants={stagger}
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true, margin: '-80px' }}
+          >
+            <motion.p variants={fadeUp} className={styles.sectionLabel}>About</motion.p>
+
+            <div className={styles.aboutGrid}>
+              <motion.div variants={fadeUp} className={styles.aboutText}>
+                <p>
+                  CS grad from Lehigh University. I build web apps, automation systems,
+                  and anything else that turns messy processes into clean ones.
+                </p>
+                <p>
+                  Currently working as a Technology Coordinator on major city projects
+                  in Los Angeles. On the side, I co-run a software solutions business —
+                  websites to automation scripts for clients across the country.
+                </p>
+              </motion.div>
+
+              <motion.div variants={fadeUp} className={styles.skillsWrap}>
+                {skills.map((skill) => (
+                  <span key={skill} className={styles.skillTag}>{skill}</span>
+                ))}
+              </motion.div>
             </div>
-
-            {/* Degree */}
-            <div className={styles.topBox}>
-              <h4 className={styles.infoTitle}>Degree</h4>
-              <p className={styles.infoValue}>B.S. Computer Science &amp; Engineering</p>
-
-              <img
-                src={DegreeImage.src}
-                alt="Degree"
-                className={styles.infoImageDegree}
-              />
-              <p className={styles.infoValue}>I spent some time in Waco, TX before transferring to my alma mater in Bethlehem, PA. During my time at university, I was involved in an entrepreneurship "Student Idea Accelerator", participated in a web development internship, and joined my fraternity playing a role in the national executive board as a web developer and minister of information for the alumni association.</p>
-            </div>
-
-            {/* Passion Project */}
-            <div className={styles.topBox}>
-              <h4 className={styles.infoTitle}>Passion Project</h4>
-              <p className={styles.infoValue}>More Than Jordans: Cultural Archive</p>
-
-              <img
-                src={morethanjordans.src}
-                alt="Passion Project"
-                className={styles.infoImage}
-              />
-              <p className={styles.infoValue}>I started selling sneakers in FB groups and OfferUp at a young age, eventually moving to StockX as my interest in fashion grew. For the past two years, I've run More Than Jordans from my bedroom, selling online and at local flea markets. I'm driven by nostalgia, curating pieces of history and tracking down my childhood grails before everyone else does.</p>
-            </div>
-          </div>
-
-          <div className={styles.buttonWrap}>
-            <a href="/projects" className={styles.workButton}>
-              <img
-                src="https://cdn-icons-png.flaticon.com/512/1250/1250696.png"
-                className={styles.buttonIcon}
-                alt=""
-              />
-              My Work
-            </a>
-          </div>
+          </motion.div>
         </section>
+
+        {/* ══════════════ PROJECTS ══════════════ */}
+        <section className={styles.section} id="projects">
+          <motion.div
+            className={styles.sectionInner}
+            variants={stagger}
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true, margin: '-80px' }}
+          >
+            <motion.p variants={fadeUp} className={styles.sectionLabel}>Projects</motion.p>
+            <motion.h2 variants={fadeUp} className={styles.sectionTitle}>
+              Things I've built
+            </motion.h2>
+
+            <motion.div variants={stagger} className={styles.projectGrid}>
+              {projects.map((p, i) => (
+                <motion.div key={i} variants={fadeUp} className={styles.projectCard}>
+                  <div className={styles.cardTop}>
+                    <span className={styles.badge}>{p.badge}</span>
+                    <h3 className={styles.cardTitle}>{p.title}</h3>
+                    <p className={styles.cardDesc}>{p.description}</p>
+                  </div>
+
+                  <div className={styles.cardBottom}>
+                    <div className={styles.techList}>
+                      {p.tech.map((t) => (
+                        <span key={t} className={styles.techTag}>{t}</span>
+                      ))}
+                    </div>
+                    <div className={styles.cardLinks}>
+                      <a href={p.demo} className={styles.cardLink}>Play →</a>
+                      <a
+                        href={p.github}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className={styles.cardLinkMuted}
+                      >
+                        GitHub
+                      </a>
+                    </div>
+                  </div>
+                </motion.div>
+              ))}
+            </motion.div>
+
+            <motion.p variants={fadeUp} className={styles.moreNote}>
+              More projects coming soon.
+            </motion.p>
+          </motion.div>
+        </section>
+
+        {/* ══════════════ CONTACT ══════════════ */}
+        <section className={styles.section} id="contact">
+          <motion.div
+            className={styles.sectionInner}
+            variants={stagger}
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true, margin: '-80px' }}
+          >
+            <motion.p variants={fadeUp} className={styles.sectionLabel}>Contact</motion.p>
+            <motion.h2 variants={fadeUp} className={styles.sectionTitle}>
+              Let's connect.
+            </motion.h2>
+            <motion.p variants={fadeUp} className={styles.contactSub}>
+              Open to new opportunities, collaborations, and interesting problems.
+            </motion.p>
+
+            <motion.div variants={fadeUp} className={styles.contactLinks}>
+              <a href="mailto:jordanbautistalazo@gmail.com" className={styles.contactLink}>
+                Email
+              </a>
+              <a
+                href="https://linkedin.com/in/jordan-bautista-lazo/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className={styles.contactLink}
+              >
+                LinkedIn
+              </a>
+              <a
+                href="https://github.com/thejordanbautista"
+                target="_blank"
+                rel="noopener noreferrer"
+                className={styles.contactLink}
+              >
+                GitHub
+              </a>
+              <a
+                href="https://docs.google.com/document/d/1vRwGQD6IE-VjJ4MbXfKq63StZ0l841JIrot1klLieUM/edit?usp=sharing"
+                target="_blank"
+                rel="noopener noreferrer"
+                className={styles.contactLink}
+              >
+                Resume
+              </a>
+            </motion.div>
+          </motion.div>
+        </section>
+
+        {/* ══════════════ FOOTER ══════════════ */}
+        <footer className={styles.footer}>
+          <p>© 2025 Jordan Bautista-Lazo</p>
+        </footer>
+
       </main>
-    </div>
+    </>
   );
 }

@@ -1,17 +1,14 @@
-// data/projects.js
+// Projects data — add entries here as you build more.
 const projects = [
-    {
-      title: 'Project One',
-      description: 'A brief description of project one.',
-      link: 'https://github.com/yourusername/project-one',
-    },
-    {
-      title: 'Project Two',
-      description: 'A brief description of project two.',
-      link: 'https://github.com/yourusername/project-two',
-    },
-    // Add more projects as needed
-  ];
-  
-  export default projects;
-  
+  {
+    badge: 'Side Project',
+    title: "Who's That Pokémon?",
+    description:
+      'A web-based Pokémon silhouette guessing game. Pulls live data from PokéAPI and keeps score across rounds.',
+    tech: ['Next.js', 'React', 'PokéAPI'],
+    demo: '/dev/pokedexle',
+    github: 'https://github.com/thejordanbautista',
+  },
+];
+
+export default projects;

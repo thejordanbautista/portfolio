@@ -1,334 +1,361 @@
-/* =========================================================
-   GLOBAL PAGE STYLING
-========================================================= */
+/* ================================
+   MAIN
+================================ */
 
-.page {
+.main {
+  min-height: 100vh;
+}
+
+/* ================================
+   HERO
+================================ */
+
+.hero {
+  position: relative;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  background: linear-gradient(90deg, #FCFCFC, #D6D6D6, #F7F7F7);
-  background-size: 300% 300%;
-  animation: gradient 5s alternate infinite;
-  position: relative;
-  width: 100%;
+  justify-content: center;
+  padding: 120px clamp(24px, 8vw, 160px) 80px;
 }
 
-@keyframes gradient {
-  0% { background-position: 0%; }
-  100% { background-position: 100%; }
+.heroContent {
+  max-width: 700px;
 }
 
-.container {
-  max-width: 90vw;
-  margin: 0 auto;
-  padding: 0 16px; /* no vertical padding so sections control height */
+.heroLabel {
+  font-size: 0.78rem;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 28px;
 }
 
-/* =========================================================
-   HERO SECTION (TOP 3-COL) — EXACTLY ONE SCREEN
-========================================================= */
+.heroTitle {
+  font-size: clamp(3.2rem, 8vw, 6.5rem);
+  font-weight: 700;
+  line-height: 1.0;
+  letter-spacing: -0.03em;
+  color: var(--text);
+  margin-bottom: 28px;
+}
 
-.heroSection {
-  height: 100vh;
+.heroSub {
+  font-size: clamp(0.95rem, 2vw, 1.1rem);
+  color: var(--text-muted);
+  line-height: 1.75;
+  margin-bottom: 44px;
+  max-width: 460px;
+}
+
+/* Hide the <br> on very small screens */
+.br {
+  display: none;
+}
+@media (min-width: 560px) {
+  .br { display: block; }
+}
+
+.heroCta {
   display: flex;
-  align-items: center;
-  box-sizing: border-box;
-  padding: 80px 0; /* gives breathing room but stays within 100vh */
-}
-
-/* THREE COLUMN LAYOUT */
-.threeCol {
-  width: 100%;
-  display: grid;
-  grid-template-columns: 60px 1fr 260px;
-  gap: 32px;
+  gap: 14px;
+  flex-wrap: wrap;
   align-items: center;
 }
 
-@media (max-width: 820px) {
-  .threeCol {
-    grid-template-columns: 1fr;
-    text-align: center;
-  }
+.btnPrimary {
+  padding: 11px 26px;
+  background: var(--text);
+  color: var(--bg);
+  border-radius: 6px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  transition: opacity 0.2s;
 }
 
-/* LEFT COLUMN — ICON NAV */
+.btnPrimary:hover {
+  opacity: 0.8;
+}
 
-.iconColumn {
+.btnSecondary {
+  padding: 11px 26px;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--text-muted);
+  transition: color 0.2s, border-color 0.2s;
+}
+
+.btnSecondary:hover {
+  color: var(--text);
+  border-color: var(--text-muted);
+}
+
+/* Scroll hint — a thin vertical line that pulses in then fades */
+.scrollHint {
+  position: absolute;
+  bottom: 36px;
+  left: clamp(24px, 8vw, 160px);
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 18px;
 }
 
-.navIcon {
-  width: 26px;
-  height: 26px;
-  opacity: 0.8;
-  transition: opacity 0.2s, transform 0.2s;
+.scrollLine {
+  display: block;
+  width: 1px;
+  height: 52px;
+  background: linear-gradient(to bottom, var(--text-muted), transparent);
+  animation: scrollPulse 2.2s ease-in-out infinite;
 }
 
-.navIcon:hover {
-  opacity: 1;
-  transform: scale(1.08);
+@keyframes scrollPulse {
+  0%, 100% { opacity: 0.3; transform: scaleY(1); }
+  50%       { opacity: 0.8; transform: scaleY(1.08); }
 }
 
-@media (max-width: 820px) {
-  .iconColumn {
-    flex-direction: row;
-    justify-content: center;
-    margin-bottom: 16px;
-  }
+/* ================================
+   SHARED SECTION
+================================ */
+
+.section {
+  padding: clamp(80px, 12vh, 140px) 0;
+  border-top: 1px solid var(--border);
 }
 
-/* CENTER COLUMN — TEXT */
-
-.textCol {
-  flex: 1;
-  margin: 0;
+.sectionInner {
+  max-width: 1040px;
+  margin: 0 auto;
+  padding: 0 clamp(24px, 8vw, 160px);
 }
 
-.title {
-  margin: 0 0 0.5rem 0;
-  font-size: 2.3rem;
+.sectionLabel {
+  font-size: 0.72rem;
   font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 20px;
+}
+
+.sectionTitle {
+  font-size: clamp(1.8rem, 4vw, 2.6rem);
+  font-weight: 700;
+  letter-spacing: -0.025em;
+  color: var(--text);
+  margin-bottom: 52px;
   line-height: 1.15;
 }
 
-@media (min-width: 820px) {
-  .title {
-    font-size: 2.5rem;
-  }
-}
+/* ================================
+   ABOUT
+================================ */
 
-.name {
-  color: #0070f3;
-}
-
-.lead {
-  margin-top: 1rem;
-  font-size: 1.1rem;
-  color: #444;
-  line-height: 1.5;
-}
-
-/* RIGHT COLUMN — PHOTO */
-
-.photoFrame {
-  width: 100%;
-  max-width: 260px;
-  height: 260px;
-  overflow: hidden;
-  border-radius: 14px;
-  margin: 0 auto;
-}
-
-@media (min-width: 820px) {
-  .photoFrame {
-    width: 240px;
-    height: 240px;
-  }
-}
-
-.photoInner {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transform: scale(1.1);
-}
-
-/* =========================================================
-   FULL-WIDTH INFO SECTION — EXACTLY ONE SCREEN
-   WITH BLUE/PURPLE TRANSPARENT GRADIENT
-========================================================= */
-
-.infoSection {
-  height: 100vh;
-  width: 100vw;
-  margin-left: calc(50% - 50vw);
-  margin-right: calc(50% - 50vw);
-
-  background: linear-gradient(
-    180deg,
-    rgba(90, 120, 255, 0.15) 0%,
-    rgba(150, 85, 215, 0.18) 40%,
-    rgba(110, 60, 200, 0.20) 80%
-  );
-
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: stretch;
-
-  box-sizing: border-box;
-  padding: 40px 0 24px;
-  position: relative;
-  border-radius: 0;
-  box-shadow: none;
-}
-
-/* subtle top separator line */
-.infoSection::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 50%;
-  height: 2px;
-  background: rgba(255, 255, 255, 0.15);
-}
-
-/* The 3-card grid takes up most of the section height */
-.infoGrid {
-  flex: 1;
+.aboutGrid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 16px;
-  width: 100%;
-  padding: 0 5vw 16px;
-  box-sizing: border-box;
+  grid-template-columns: 1fr 1fr;
+  gap: 72px;
+  align-items: start;
 }
 
-@media (max-width: 760px) {
-  .infoGrid {
+@media (max-width: 720px) {
+  .aboutGrid {
     grid-template-columns: 1fr;
-    padding: 0 20px 12px;
+    gap: 44px;
   }
 }
 
-/* =========================================================
-   CARDS — FILL AVAILABLE HEIGHT IN GRID
-========================================================= */
-
-.topBox {
-  height: 100%;      /* fill grid row */
-  min-height: 0;
-
-  background: rgba(255, 255, 255, 0.25);
-  border: 2px solid rgba(255, 255, 255, 0.25);
-
-  padding: 24px;
+.aboutText {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: flex-start;
-
-  text-align: center;
-  backdrop-filter: blur(8px);
-  box-shadow: 0 6px 22px rgba(0, 0, 0, 0.15);
-
-  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  gap: 18px;
 }
 
-.topBox:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 10px 30px rgba(0,0,0,0.22);
+.aboutText p {
+  font-size: 0.975rem;
+  color: var(--text-muted);
+  line-height: 1.8;
 }
 
-/* Images inside the card */
-.infoImage,
-.infoImageDegree {
-  width: 80%;
-  max-height: 55%;
-  object-fit: contain;
-  margin-top: 20px;
+.skillsWrap {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-content: flex-start;
 }
 
-@media (max-width: 760px) {
-  .topBox {
-    height: auto; /* allow natural height on small screens */
-  }
-  
-  .infoImage,
-  .infoImageDegree {
-    max-height: 200px;
-  }
+.skillTag {
+  padding: 5px 14px;
+  border: 1px solid var(--border);
+  border-radius: 100px;
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  background: var(--bg-surface);
+  transition: color 0.2s, border-color 0.2s;
+  cursor: default;
 }
 
-/* =========================================================
-   INFO CARD TYPOGRAPHY
-========================================================= */
+.skillTag:hover {
+  color: var(--text);
+  border-color: var(--text-muted);
+}
 
-.infoTitle {
-  font-size: 0.75rem;
-  font-weight: 700;
+/* ================================
+   PROJECTS
+================================ */
+
+.projectGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 18px;
+  margin-bottom: 36px;
+}
+
+.projectCard {
+  padding: 30px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--bg-card);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 230px;
+  transition: border-color 0.2s, transform 0.25s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.projectCard:hover {
+  border-color: var(--text-muted);
+  transform: translateY(-3px);
+}
+
+.cardTop {
+  flex: 1;
+}
+
+.badge {
+  display: inline-block;
+  font-size: 0.68rem;
+  font-weight: 600;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.65);
-  margin: 0 0 10px;
+  color: var(--text-muted);
+  margin-bottom: 14px;
 }
 
-.infoValue {
-  font-size: 0.92rem;
-  color: rgba(20, 20, 40, 0.85);
-  line-height: 1.55;
-  margin: 0 0 6px;
+.cardTitle {
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: var(--text);
+  margin-bottom: 10px;
+  line-height: 1.3;
 }
 
-/* =========================================================
-   BUTTON WRAPPER (INSIDE BOTTOM SECTION)
-========================================================= */
+.cardDesc {
+  font-size: 0.875rem;
+  color: var(--text-muted);
+  line-height: 1.7;
+}
 
-.buttonWrap {
+.cardBottom {
+  margin-top: 28px;
   display: flex;
-  justify-content: center;
-  padding: 0 0 8px;
-}
-
-.workButton {
-  padding: 12px 22px;
-  background: rgba(54, 90, 136, 0.9);
-  color: white;
-  text-decoration: none;
-  border-radius: 6px;
-  font-size: 16px;
-  transition: opacity 0.2s;
-  width: 100%;
-  max-width: 300px;
-  text-align: center;
-  display: inline-flex;
   align-items: center;
-  justify-content: center;
-  gap: 8px;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
 }
 
-.workButton:hover {
-  opacity: 0.85;
+.techList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
 }
 
-.buttonIcon {
-  height: 22px;
+.techTag {
+  font-size: 0.72rem;
+  padding: 3px 10px;
+  border: 1px solid var(--border);
+  border-radius: 100px;
+  color: var(--text-muted);
 }
 
-/* =========================================================
-   TYPEWRITER EFFECT
-========================================================= */
-
-.typewriter {
-  overflow: hidden;
-  white-space: nowrap;
-  border-right: 2px solid #111;
-  width: 0;
-  animation: typing 2.8s steps(32, end) forwards,
-             blink 0.7s step-end infinite;
+.cardLinks {
+  display: flex;
+  gap: 18px;
+  align-items: center;
 }
 
-@keyframes typing {
-  from { width: 0; }
-  to { width: 660px; }
+.cardLink {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--text);
+  transition: opacity 0.2s;
 }
 
-@keyframes blink {
-  50% { border-color: transparent; }
+.cardLink:hover {
+  opacity: 0.6;
 }
 
-/* MOBILE: drop typewriter so text wraps naturally */
-@media (max-width: 820px) {
-  .typewriter {
-    white-space: normal;
-    width: auto;
-    border-right: none;
-    animation: none;
-  }
+.cardLinkMuted {
+  font-size: 0.875rem;
+  color: var(--text-muted);
+  transition: color 0.2s;
+}
+
+.cardLinkMuted:hover {
+  color: var(--text);
+}
+
+.moreNote {
+  font-size: 0.825rem;
+  color: var(--text-faint);
+  letter-spacing: 0.04em;
+}
+
+/* ================================
+   CONTACT
+================================ */
+
+.contactSub {
+  font-size: 0.975rem;
+  color: var(--text-muted);
+  line-height: 1.75;
+  margin-bottom: 44px;
+  max-width: 480px;
+}
+
+.contactLinks {
+  display: flex;
+  gap: 36px;
+  flex-wrap: wrap;
+}
+
+.contactLink {
+  font-size: 0.925rem;
+  color: var(--text-muted);
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 3px;
+  transition: color 0.2s, border-color 0.2s;
+}
+
+.contactLink:hover {
+  color: var(--text);
+  border-color: var(--text-muted);
+}
+
+/* ================================
+   FOOTER
+================================ */
+
+.footer {
+  padding: 40px clamp(24px, 8vw, 160px);
+  border-top: 1px solid var(--border);
+}
+
+.footer p {
+  font-size: 0.78rem;
+  color: var(--text-faint);
+  letter-spacing: 0.04em;
 }
