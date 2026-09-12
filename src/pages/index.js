@@ -4,10 +4,8 @@ import { motion } from 'framer-motion';
 import Navbar from '../components/Navbar';
 import HeadshotImg from '../images/jordan-headshot.jpg';
 import GradImg from '../images/jordan-grad.jpg';
-import SoccerImg from '../images/jordan-soccer.jpg';
 import FleaMarketImg from '../images/jordan-fleamarket.jpg';
 import DragoniteImg from '../images/dragonite.png';
-import MoreThanJordansImg from '../images/morethanjordans.jpg';
 import styles from './home.module.css';
 
 /* ── Animation variants ── */
@@ -28,28 +26,24 @@ const stagger = {
 /* ── Content ── */
 const focuses = [
   {
-    num: '01',
-    title: 'Web Applications',
-    desc: 'Modern web apps built with Next.js, React, and TypeScript. Performance, accessibility, and clarity from the first commit.',
-    bullets: ['Next.js / React', 'TypeScript', 'Postgres'],
+    title: 'Engineering',
+    desc: 'Full-stack web apps, APIs, and automation — built end-to-end, from database to deployed product.',
+    bullets: ['Next.js / React', 'Python / Django', 'AWS / Docker'],
   },
   {
-    num: '02',
-    title: 'Automation',
-    desc: 'Python and workflow tooling that turns manual processes into background tasks. The boring stuff disappears.',
-    bullets: ['Python / Django', 'API integrations', 'Workflows'],
+    title: 'GIS & Civic Tech',
+    desc: 'Mapping platforms that turn public engagement and urban planning into something people actually use.',
+    bullets: ['Mapbox', 'Supabase', 'Cloudflare'],
   },
   {
-    num: '03',
-    title: 'AI Integrations',
-    desc: 'Working with OpenAI and Claude to build practical AI features into real products — not demos, products.',
-    bullets: ['OpenAI / Claude', 'RAG', 'Prompt design'],
+    title: 'AI & Automation',
+    desc: 'Practical AI systems and workflow automation that save real hours — not demos.',
+    bullets: ['Claude / GPT', 'Workflow automation', 'Knowledge systems'],
   },
   {
-    num: '04',
-    title: 'APIs & Backends',
-    desc: 'Designing REST APIs and the systems behind them. Comfortable across the stack and the deploy pipeline.',
-    bullets: ['Django / Node', 'REST APIs', 'AWS'],
+    title: 'Marketing & Growth',
+    desc: 'Landing pages, social presence, and content systems that turn a project into something people follow.',
+    bullets: ['Launch pages', 'Content tooling', 'Brand systems'],
   },
 ];
 
@@ -62,7 +56,7 @@ const marqueeItems = [
   'TypeScript',
   'Always Building',
   'Music',
-  'Vintage',
+  'Mapping',
 ];
 
 const projects = [
@@ -96,8 +90,8 @@ const projects = [
     tech: ['React Native', 'Firebase'],
     demo: null,
     accent: 'Vintage Resell',
-    image: MoreThanJordansImg,
-    imageAlt: 'More Than Jordans vintage resell',
+    image: FleaMarketImg,
+    imageAlt: 'Running More Than Jordans at LA flea markets',
     linkLabel: null,
   },
   {
@@ -117,22 +111,10 @@ const projects = [
 
 const moments = [
   {
-    img: SoccerImg,
-    label: 'Age 8',
-    caption: "Been built with this energy since the rec league.",
-    pos: 'center 30%',
-  },
-  {
     img: GradImg,
     label: 'Lehigh University',
     caption: "B.S. Computer Science & Engineering, '23.",
     pos: 'center 30%',
-  },
-  {
-    img: FleaMarketImg,
-    label: 'More Than Jordans',
-    caption: 'Running vintage and resell at LA flea markets.',
-    pos: 'center center',
   },
 ];
 
@@ -203,16 +185,6 @@ export default function Home() {
               />
             </motion.div>
           </motion.div>
-
-          <motion.div
-            className={styles.scrollHint}
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 1.4, duration: 0.8 }}
-          >
-            <span className={styles.scrollLabel}>Scroll</span>
-            <span className={styles.scrollLine} />
-          </motion.div>
         </section>
 
         {/* ══════════════ MARQUEE ══════════════ */}
@@ -239,21 +211,19 @@ export default function Home() {
             viewport={{ once: true, margin: '-80px' }}
           >
             <motion.p variants={fadeUp} className={styles.sectionLabel}>
-              <span className={styles.sectionNum}>01</span> What I Do
+              What I Do
             </motion.p>
             <motion.h2 variants={fadeUp} className={styles.sectionTitle}>
               Where I focus.
             </motion.h2>
             <motion.p variants={fadeUp} className={styles.sectionLead}>
-              I build software end-to-end and gravitate toward problems that mix
-              engineering with creative thinking. These are the areas I spend most
-              of my time in.
+              I move across the stack — and past it. Engineering, GIS, AI, and
+              the marketing muscle to actually launch what I build.
             </motion.p>
 
             <motion.div variants={stagger} className={styles.servicesGrid}>
               {focuses.map((s) => (
-                <motion.div key={s.num} variants={fadeUp} className={styles.serviceCard}>
-                  <span className={styles.serviceNum}>{s.num}</span>
+                <motion.div key={s.title} variants={fadeUp} className={styles.serviceCard}>
                   <h3 className={styles.serviceTitle}>{s.title}</h3>
                   <p className={styles.serviceDesc}>{s.desc}</p>
                   <ul className={styles.serviceBullets}>
@@ -277,7 +247,7 @@ export default function Home() {
             viewport={{ once: true, margin: '-80px' }}
           >
             <motion.p variants={fadeUp} className={styles.sectionLabel}>
-              <span className={styles.sectionNum}>02</span> About
+              About
             </motion.p>
             <motion.h2 variants={fadeUp} className={styles.sectionTitle}>
               A bit more<br />about me.
@@ -286,16 +256,14 @@ export default function Home() {
             <div className={styles.aboutGrid}>
               <motion.div variants={fadeUp} className={styles.aboutText}>
                 <p>
-                  CS grad from Lehigh University. Currently coordinating technology
-                  on major civic projects in Los Angeles, including designing and
-                  building an internal GIS platform for public engagement — working
-                  at the intersection of software, infrastructure, and community impact.
+                  CS grad from Lehigh University, currently coordinating technology
+                  on civic projects in Los Angeles — including designing and building
+                  an internal GIS platform for public engagement.
                 </p>
                 <p>
-                  I build the way I think: simple, direct, and obsessed with whether
-                  the thing actually works. Outside of the day job I'm digging for
-                  vintage tees, exploring LA's music scene, or building small projects
-                  for the fun of it.
+                  I'm drawn to problems that cross disciplines: building the product,
+                  mapping the data, and getting the word out. Always looking for the
+                  next thing to grow into, technically and professionally.
                 </p>
               </motion.div>
 
@@ -315,9 +283,9 @@ export default function Home() {
                   </span>
                 </div>
                 <div className={styles.metaBlock}>
-                  <span className={styles.metaLabel}>Off the clock</span>
+                  <span className={styles.metaLabel}>Also into</span>
                   <span className={styles.metaValue}>
-                    Vintage hunting · vinyl · live music · pop culture
+                    Music · mapping · civic tech · side projects
                   </span>
                 </div>
               </motion.div>
@@ -361,15 +329,14 @@ export default function Home() {
             viewport={{ once: true, margin: '-80px' }}
           >
             <motion.p variants={fadeUp} className={styles.sectionLabel}>
-              <span className={styles.sectionNum}>03</span> Projects
+              Projects
             </motion.p>
             <motion.h2 variants={fadeUp} className={styles.sectionTitle}>
-              Things I build for fun.
+              What I've been building.
             </motion.h2>
             <motion.p variants={fadeUp} className={styles.sectionLead}>
-              My side projects live at the intersection of software and the things
-              I actually care about — music, vintage, Pokémon, pop culture. This is
-              where the personality lives.
+              Work and side projects, side by side — mapping, music, business
+              tooling, and the occasional game.
             </motion.p>
 
             <motion.div variants={stagger} className={styles.projectGrid}>
@@ -428,11 +395,6 @@ export default function Home() {
                 );
               })}
             </motion.div>
-
-            <motion.p variants={fadeUp} className={styles.moreNote}>
-              More side projects in the works — civic mapping tools, vinyl
-              tooling, and a few things I'm not ready to talk about yet.
-            </motion.p>
           </motion.div>
         </section>
 
@@ -446,7 +408,7 @@ export default function Home() {
             viewport={{ once: true, margin: '-80px' }}
           >
             <motion.p variants={fadeUp} className={styles.sectionLabel}>
-              <span className={styles.sectionNum}>04</span> Contact
+              Contact
             </motion.p>
             <motion.h2 variants={fadeUp} className={styles.sectionTitleLg}>
               Let's <span className={styles.heroAccent}>connect.</span>

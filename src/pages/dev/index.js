@@ -62,17 +62,6 @@ export default function Dev() {
               <div className={styles.cardArrow}>→</div>
             </Link>
           ))}
-
-          {/* Placeholder "coming soon" card */}
-          <div className={`${styles.card} ${styles.soon}`}>
-            <div className={styles.cardIcon} style={{ background: '#334' }}>
-              <span>🔧</span>
-            </div>
-            <div className={styles.cardBody}>
-              <h2 className={styles.cardTitle}>More coming soon</h2>
-              <p className={styles.cardDesc}>Next project is in progress…</p>
-            </div>
-          </div>
         </section>
 
       </main>
