@@ -7,6 +7,7 @@ import GradImg from '../images/jordan-grad.jpg';
 import SoccerImg from '../images/jordan-soccer.jpg';
 import FleaMarketImg from '../images/jordan-fleamarket.jpg';
 import DragoniteImg from '../images/dragonite.png';
+import MoreThanJordansImg from '../images/morethanjordans.jpg';
 import styles from './home.module.css';
 
 /* ── Animation variants ── */
@@ -66,6 +67,40 @@ const marqueeItems = [
 
 const projects = [
   {
+    badge: 'Work Project',
+    title: 'Arellano Insight',
+    description:
+      "A GIS-based public engagement platform I designed and built as part of my role at Arellano Associates. Lets project teams launch configurable interactive maps with custom study areas, categorized public comments, and survey questions for community input.",
+    tech: ['TypeScript', 'Mapbox', 'Supabase', 'Cloudflare'],
+    demo: null,
+    accent: 'Civic Tech',
+    image: null,
+    linkLabel: null,
+  },
+  {
+    badge: 'Personal Project',
+    title: 'MixDro',
+    description:
+      "A music social platform where artists and fans share the music that actually inspires them — not the algorithm's picks. Built an MVP with SwiftUI/MVVM for iOS, Spotify-connected playback, real-time comments, and a FastAPI backend, plus creator tooling including a rapid Instagram graphic generator.",
+    tech: ['SwiftUI', 'FastAPI', 'Spotify API'],
+    demo: 'https://mixdro.com/',
+    accent: 'Music',
+    image: null,
+    linkLabel: 'Join Waitlist',
+  },
+  {
+    badge: 'Side Project',
+    title: 'More Than Jordans — Inventory System',
+    description:
+      'A POS and inventory management system built for my own vintage resell business, tracking stock, pricing, and event prep across LA flea markets.',
+    tech: ['React Native', 'Firebase'],
+    demo: null,
+    accent: 'Vintage Resell',
+    image: MoreThanJordansImg,
+    imageAlt: 'More Than Jordans vintage resell',
+    linkLabel: null,
+  },
+  {
     badge: 'Side Project',
     title: "Who's That Pokémon?",
     description:
@@ -76,6 +111,7 @@ const projects = [
     image: DragoniteImg,
     imageAlt: 'Dragonite pixel sprite',
     pixel: true,
+    linkLabel: 'Play',
   },
 ];
 
@@ -141,8 +177,9 @@ export default function Home() {
               </motion.p>
 
               <motion.p variants={fadeUp} className={styles.heroBio}>
-                I build clean web applications, automate the boring parts of work,
-                and occasionally make games about Pokémon. Currently coordinating
+                I build clean web applications, GIS mapping platforms, and
+                automation that quietly gets out of the way — plus the
+                occasional game about Pokémon. Currently coordinating
                 technology on major civic projects across Los Angeles.
               </motion.p>
 
@@ -250,8 +287,9 @@ export default function Home() {
               <motion.div variants={fadeUp} className={styles.aboutText}>
                 <p>
                   CS grad from Lehigh University. Currently coordinating technology
-                  on major civic projects in Los Angeles, working at the intersection
-                  of software, infrastructure, and community impact.
+                  on major civic projects in Los Angeles, including designing and
+                  building an internal GIS platform for public engagement — working
+                  at the intersection of software, infrastructure, and community impact.
                 </p>
                 <p>
                   I build the way I think: simple, direct, and obsessed with whether
@@ -273,7 +311,7 @@ export default function Home() {
                 <div className={styles.metaBlock}>
                   <span className={styles.metaLabel}>Stack</span>
                   <span className={styles.metaValue}>
-                    Next.js · Python · TypeScript · Django · Postgres · OpenAI
+                    Next.js · Python · TypeScript · Django · Mapbox · AWS
                   </span>
                 </div>
                 <div className={styles.metaBlock}>
@@ -335,56 +373,65 @@ export default function Home() {
             </motion.p>
 
             <motion.div variants={stagger} className={styles.projectGrid}>
-              {projects.map((p, i) => (
-                <motion.a
-                  key={i}
-                  href={p.demo}
-                  variants={fadeUp}
-                  className={styles.projectCard}
-                >
-                  <div
-                    className={`${styles.projectImageSlot} ${p.pixel ? styles.projectImagePixel : ''}`}
+              {projects.map((p, i) => {
+                const isExternal = p.demo && p.demo.startsWith('http');
+                const CardTag = p.demo ? motion.a : motion.div;
+                const linkProps = p.demo
+                  ? { href: p.demo, ...(isExternal ? { target: '_blank', rel: 'noopener noreferrer' } : {}) }
+                  : {};
+                return (
+                  <CardTag
+                    key={i}
+                    variants={fadeUp}
+                    className={styles.projectCard}
+                    {...linkProps}
                   >
-                    {p.image ? (
-                      <Image
-                        src={p.image}
-                        alt={p.imageAlt}
-                        className={p.pixel ? styles.pixelArt : styles.projectImageEl}
-                        width={p.pixel ? 220 : undefined}
-                        height={p.pixel ? 220 : undefined}
-                        sizes="(max-width: 760px) 90vw, 360px"
-                      />
-                    ) : (
-                      <span className={styles.projectImagePlaceholder}>
-                        Visual coming soon
-                      </span>
-                    )}
-                  </div>
-                  <div className={styles.projectBody}>
-                    <div className={styles.projectMeta}>
-                      <span className={styles.badge}>{p.badge}</span>
-                      <span className={styles.accentBadge}>{p.accent}</span>
+                    <div
+                      className={`${styles.projectImageSlot} ${p.pixel ? styles.projectImagePixel : ''}`}
+                    >
+                      {p.image ? (
+                        <Image
+                          src={p.image}
+                          alt={p.imageAlt}
+                          className={p.pixel ? styles.pixelArt : styles.projectImageEl}
+                          width={p.pixel ? 220 : undefined}
+                          height={p.pixel ? 220 : undefined}
+                          sizes="(max-width: 760px) 90vw, 360px"
+                        />
+                      ) : (
+                        <span className={styles.projectImagePlaceholder}>
+                          Visual coming soon
+                        </span>
+                      )}
                     </div>
-                    <h3 className={styles.cardTitle}>{p.title}</h3>
-                    <p className={styles.cardDesc}>{p.description}</p>
-                    <div className={styles.cardBottom}>
-                      <div className={styles.techList}>
-                        {p.tech.map((t) => (
-                          <span key={t} className={styles.techTag}>{t}</span>
-                        ))}
+                    <div className={styles.projectBody}>
+                      <div className={styles.projectMeta}>
+                        <span className={styles.badge}>{p.badge}</span>
+                        <span className={styles.accentBadge}>{p.accent}</span>
                       </div>
-                      <span className={styles.cardLink}>
-                        Play <span className={styles.cardArrow}>→</span>
-                      </span>
+                      <h3 className={styles.cardTitle}>{p.title}</h3>
+                      <p className={styles.cardDesc}>{p.description}</p>
+                      <div className={styles.cardBottom}>
+                        <div className={styles.techList}>
+                          {p.tech.map((t) => (
+                            <span key={t} className={styles.techTag}>{t}</span>
+                          ))}
+                        </div>
+                        {p.linkLabel && (
+                          <span className={styles.cardLink}>
+                            {p.linkLabel} <span className={styles.cardArrow}>→</span>
+                          </span>
+                        )}
+                      </div>
                     </div>
-                  </div>
-                </motion.a>
-              ))}
+                  </CardTag>
+                );
+              })}
             </motion.div>
 
             <motion.p variants={fadeUp} className={styles.moreNote}>
-              More side projects in the works — vinyl tooling, concert trackers,
-              and a few things I'm not ready to talk about yet.
+              More side projects in the works — civic mapping tools, vinyl
+              tooling, and a few things I'm not ready to talk about yet.
             </motion.p>
           </motion.div>
         </section>
