@@ -6,6 +6,7 @@ import HeadshotImg from '../images/jordan-headshot.jpg';
 import GradImg from '../images/jordan-grad.jpg';
 import FleaMarketImg from '../images/jordan-fleamarket.jpg';
 import DragoniteImg from '../images/dragonite.png';
+import RouteMap from '../components/RouteMap';
 import styles from './home.module.css';
 
 /* ── Animation variants ── */
@@ -181,14 +182,15 @@ export default function Home() {
               </motion.h1>
 
               <motion.p variants={fadeUp} className={styles.heroRole}>
-                Software Engineer
+                GIS Developer · Technical Consultant
               </motion.p>
 
               <motion.p variants={fadeUp} className={styles.heroBio}>
-                I build clean web applications, GIS mapping platforms, and
-                automation that quietly gets out of the way — plus the
-                occasional game about Pokémon. Currently coordinating
-                technology on major civic projects across Los Angeles.
+                I turn technical problems into working systems — GIS
+                platforms, web apps, and the automation behind them. My
+                background spans engineering, civic infrastructure, and
+                business, so I can scope what a client needs and build it
+                myself.
               </motion.p>
 
               <motion.div variants={fadeUp} className={styles.heroCta}>
@@ -258,6 +260,13 @@ export default function Home() {
                     </span>
                   </div>
                 </div>
+              </motion.div>
+
+              <motion.div variants={fadeUp} className={styles.aboutRouteMap}>
+                <RouteMap />
+                <p className={styles.aboutRouteCaption}>
+                  Portland, OR → Bethlehem, PA → Los Angeles, CA
+                </p>
               </motion.div>
             </div>
           </motion.div>
