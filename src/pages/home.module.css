@@ -3,9 +3,103 @@
 ================================ */
 
 .main {
-  min-height: 100vh;
+  height: 100vh;
+  height: 100dvh;
   position: relative;
+  overflow: hidden;
   z-index: 1;
+}
+
+/* ================================
+   FULL-SCREEN SLIDES
+================================ */
+
+.slide {
+  position: absolute;
+  inset: 0;
+  height: 100vh;
+  height: 100dvh;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow-y: auto;
+  padding-top: 84px;
+  padding-bottom: 96px;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(16px);
+  transition: opacity 0.45s ease, transform 0.45s ease, visibility 0.45s;
+  pointer-events: none;
+}
+
+.slideActive {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+/* ================================
+   BOTTOM SECTION NAV
+================================ */
+
+.sectionNav {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 200;
+  display: flex;
+  gap: 2px;
+  padding: 6px;
+  max-width: calc(100vw - 24px);
+  overflow-x: auto;
+  background: var(--nav-bg);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid var(--border);
+  border-radius: 100px;
+  box-shadow: 0 16px 40px -16px rgba(0, 0, 0, 0.4);
+}
+
+.navDot {
+  padding: 10px 18px;
+  border-radius: 100px;
+  font-size: 0.82rem;
+  font-weight: 500;
+  color: var(--text-muted);
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background 0.2s, color 0.2s;
+}
+
+.navDot:hover {
+  color: var(--text);
+}
+
+.navDotActive {
+  background: var(--text);
+  color: var(--bg);
+}
+
+@media (max-width: 620px) {
+  .navDot {
+    padding: 8px 12px;
+    font-size: 0.74rem;
+  }
+
+  .sectionNav {
+    bottom: 14px;
+    gap: 0;
+  }
+
+  .slide {
+    padding-top: 70px;
+    padding-bottom: 76px;
+  }
 }
 
 /* ================================
@@ -41,11 +135,12 @@
 .heroGrid {
   display: grid;
   grid-template-columns: 1.15fr 1fr;
-  gap: clamp(40px, 7vw, 90px);
+  gap: clamp(32px, 6vw, 90px);
   align-items: center;
   width: 100%;
   max-width: 1180px;
   margin: 0 auto;
+  padding: 0 clamp(24px, 8vw, 140px);
 }
 
 @media (max-width: 880px) {
@@ -167,9 +262,11 @@
   padding: 14px 26px;
   background: var(--text);
   color: var(--bg);
+  border: none;
   border-radius: 100px;
   font-size: 0.9rem;
   font-weight: 500;
+  cursor: pointer;
   transition: transform 0.25s ease, opacity 0.2s;
 }
 
@@ -195,6 +292,7 @@
   font-weight: 500;
   color: var(--text);
   background: var(--bg-surface);
+  cursor: pointer;
   transition: border-color 0.2s, background 0.2s;
 }
 
@@ -312,7 +410,7 @@
   letter-spacing: 0.16em;
   text-transform: uppercase;
   color: var(--text-muted);
-  margin-bottom: 28px;
+  margin-bottom: 14px;
 }
 
 .sectionNum {
@@ -323,11 +421,11 @@
 }
 
 .sectionTitle {
-  font-size: clamp(2rem, 4.6vw, 3.4rem);
+  font-size: clamp(1.8rem, 4vw, 3rem);
   font-weight: 700;
   letter-spacing: -0.03em;
   color: var(--text);
-  margin-bottom: 24px;
+  margin-bottom: 14px;
   line-height: 1.05;
 }
 
@@ -341,11 +439,11 @@
 }
 
 .sectionLead {
-  font-size: 1.05rem;
+  font-size: 1rem;
   color: var(--text-muted);
-  line-height: 1.7;
+  line-height: 1.6;
   max-width: 600px;
-  margin-bottom: 60px;
+  margin-bottom: 28px;
 }
 
 /* ================================
@@ -370,7 +468,7 @@
 
 .serviceCard {
   background: var(--bg);
-  padding: 36px;
+  padding: 26px;
   display: flex;
   flex-direction: column;
   transition: background 0.25s;
@@ -811,4 +909,11 @@
   font-size: 0.78rem;
   color: var(--text-faint);
   letter-spacing: 0.04em;
+}
+
+.contactSub ~ .footerCopy,
+.contactCtaRow ~ .footerCopy {
+  margin-top: 48px;
+  padding-top: 20px;
+  border-top: 1px solid var(--border);
 }

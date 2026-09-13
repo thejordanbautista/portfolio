@@ -27,26 +27,16 @@ function MoonIcon() {
 }
 
 export default function Navbar() {
-  const [scrolled, setScrolled] = useState(false);
   const [mounted, setMounted] = useState(false);
   const { theme, setTheme } = useTheme();
 
   useEffect(() => {
     setMounted(true);
-    const onScroll = () => setScrolled(window.scrollY > 24);
-    window.addEventListener('scroll', onScroll, { passive: true });
-    return () => window.removeEventListener('scroll', onScroll);
   }, []);
 
   return (
-    <nav className={`${styles.nav} ${scrolled ? styles.scrolled : ''}`}>
+    <nav className={`${styles.nav} ${styles.scrolled}`}>
       <a href="/" className={styles.logo}>JBL</a>
-
-      <div className={styles.links}>
-        <a href="#about" className={styles.link}>About</a>
-        <a href="#projects" className={styles.link}>Projects</a>
-        <a href="#contact" className={styles.link}>Contact</a>
-      </div>
 
       <button
         className={styles.toggle}

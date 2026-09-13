@@ -1,3 +1,4 @@
+import { useState, useEffect, useCallback } from 'react';
 import Head from 'next/head';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
@@ -22,6 +23,15 @@ const stagger = {
   hidden: {},
   show: { transition: { staggerChildren: 0.1 } },
 };
+
+/* ── Sections config (drives the bottom nav) ── */
+const sections = [
+  { id: 'home', label: 'Home' },
+  { id: 'focus', label: 'Focus' },
+  { id: 'about', label: 'About' },
+  { id: 'projects', label: 'Work' },
+  { id: 'contact', label: 'Contact' },
+];
 
 /* ── Content ── */
 const focuses = [
@@ -95,6 +105,44 @@ const projects = [
 
 /* ── Page ── */
 export default function Home() {
+  const [active, setActive] = useState(0);
+
+  const goTo = useCallback((index) => {
+    setActive(Math.max(0, Math.min(sections.length - 1, index)));
+  }, []);
+
+  // Lock page scroll — sections are full-screen panels, not a scrolling flow.
+  // Restored on unmount so /dev pages scroll normally.
+  useEffect(() => {
+    const html = document.documentElement;
+    const prevHtmlOverflow = html.style.overflow;
+    const prevBodyOverflow = document.body.style.overflow;
+    html.style.overflow = 'hidden';
+    document.body.style.overflow = 'hidden';
+    return () => {
+      html.style.overflow = prevHtmlOverflow;
+      document.body.style.overflow = prevBodyOverflow;
+    };
+  }, []);
+
+  // Arrow-key navigation between sections (desktop convenience).
+  useEffect(() => {
+    function handleKeyDown(e) {
+      if (e.key === 'ArrowDown' || e.key === 'ArrowRight') {
+        e.preventDefault();
+        goTo(active + 1);
+      } else if (e.key === 'ArrowUp' || e.key === 'ArrowLeft') {
+        e.preventDefault();
+        goTo(active - 1);
+      }
+    }
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [active, goTo]);
+
+  const slideClass = (index) =>
+    `${styles.slide} ${active === index ? styles.slideActive : ''}`;
+
   return (
     <>
       <Head>
@@ -111,13 +159,13 @@ export default function Home() {
 
       <main className={styles.main}>
 
-        {/* ══════════════ HERO ══════════════ */}
-        <section className={styles.hero} id="hero">
+        {/* ══════════════ HOME ══════════════ */}
+        <section className={slideClass(0)} aria-hidden={active !== 0}>
           <motion.div
             className={styles.heroGrid}
             variants={stagger}
             initial="hidden"
-            animate="show"
+            animate={active === 0 ? 'show' : 'hidden'}
           >
             <div className={styles.heroText}>
               <motion.div variants={fadeUp} className={styles.statusRow}>
@@ -141,11 +189,13 @@ export default function Home() {
               </motion.p>
 
               <motion.div variants={fadeUp} className={styles.heroCta}>
-                <a href="#contact" className={styles.btnPrimary}>
+                <button type="button" onClick={() => goTo(4)} className={styles.btnPrimary}>
                   Get in Touch
                   <span className={styles.btnArrow}>→</span>
-                </a>
-                <a href="#projects" className={styles.btnSecondary}>See Projects</a>
+                </button>
+                <button type="button" onClick={() => goTo(3)} className={styles.btnSecondary}>
+                  See Projects
+                </button>
               </motion.div>
             </div>
 
@@ -162,14 +212,13 @@ export default function Home() {
           </motion.div>
         </section>
 
-        {/* ══════════════ FOCUS / WHAT I DO ══════════════ */}
-        <section className={styles.section} id="services">
+        {/* ══════════════ FOCUS ══════════════ */}
+        <section className={slideClass(1)} aria-hidden={active !== 1}>
           <motion.div
             className={styles.sectionInner}
             variants={stagger}
             initial="hidden"
-            whileInView="show"
-            viewport={{ once: true, margin: '-80px' }}
+            animate={active === 1 ? 'show' : 'hidden'}
           >
             <motion.p variants={fadeUp} className={styles.sectionLabel}>
               Range
@@ -194,13 +243,12 @@ export default function Home() {
         </section>
 
         {/* ══════════════ ABOUT ══════════════ */}
-        <section className={styles.section} id="about">
+        <section className={slideClass(2)} aria-hidden={active !== 2}>
           <motion.div
             className={styles.sectionInner}
             variants={stagger}
             initial="hidden"
-            whileInView="show"
-            viewport={{ once: true, margin: '-80px' }}
+            animate={active === 2 ? 'show' : 'hidden'}
           >
             <motion.p variants={fadeUp} className={styles.sectionLabel}>
               About
@@ -243,13 +291,12 @@ export default function Home() {
         </section>
 
         {/* ══════════════ PROJECTS ══════════════ */}
-        <section className={styles.section} id="projects">
+        <section className={slideClass(3)} aria-hidden={active !== 3}>
           <motion.div
             className={styles.sectionInner}
             variants={stagger}
             initial="hidden"
-            whileInView="show"
-            viewport={{ once: true, margin: '-80px' }}
+            animate={active === 3 ? 'show' : 'hidden'}
           >
             <motion.p variants={fadeUp} className={styles.sectionLabel}>
               Projects
@@ -322,13 +369,12 @@ export default function Home() {
         </section>
 
         {/* ══════════════ CONTACT ══════════════ */}
-        <section className={styles.section} id="contact">
+        <section className={slideClass(4)} aria-hidden={active !== 4}>
           <motion.div
             className={styles.sectionInner}
             variants={stagger}
             initial="hidden"
-            whileInView="show"
-            viewport={{ once: true, margin: '-80px' }}
+            animate={active === 4 ? 'show' : 'hidden'}
           >
             <motion.p variants={fadeUp} className={styles.sectionLabel}>
               Contact
@@ -376,18 +422,27 @@ export default function Home() {
                 </a>
               </div>
             </motion.div>
+
+            <p className={styles.footerCopy}>© 2026 Jordan Bautista-Lazo · Built in Los Angeles.</p>
           </motion.div>
         </section>
 
-        {/* ══════════════ FOOTER ══════════════ */}
-        <footer className={styles.footer}>
-          <div className={styles.footerInner}>
-            <p className={styles.footerCopy}>© 2026 Jordan Bautista-Lazo</p>
-            <p className={styles.footerNote}>Built in Los Angeles.</p>
-          </div>
-        </footer>
-
       </main>
+
+      {/* ══════════════ BOTTOM SECTION NAV ══════════════ */}
+      <nav className={styles.sectionNav} aria-label="Section navigation">
+        {sections.map((s, i) => (
+          <button
+            key={s.id}
+            type="button"
+            className={`${styles.navDot} ${active === i ? styles.navDotActive : ''}`}
+            onClick={() => goTo(i)}
+            aria-current={active === i ? 'true' : undefined}
+          >
+            {s.label}
+          </button>
+        ))}
+      </nav>
     </>
   );
 }
