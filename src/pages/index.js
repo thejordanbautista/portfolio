@@ -27,23 +27,19 @@ const stagger = {
 const focuses = [
   {
     title: 'Engineering',
-    desc: 'Full-stack web apps, APIs, and automation — built end-to-end, from database to deployed product.',
-    bullets: ['Next.js / React', 'Python / Django', 'AWS / Docker'],
+    desc: 'Full-stack apps and automation, shipped end-to-end.',
   },
   {
     title: 'GIS & Civic Tech',
-    desc: 'Mapping platforms that turn public engagement and urban planning into something people actually use.',
-    bullets: ['Mapbox', 'Supabase', 'Cloudflare'],
+    desc: 'Mapping platforms that make public engagement real.',
   },
   {
     title: 'AI & Automation',
-    desc: 'Practical AI systems and workflow automation that save real hours — not demos.',
-    bullets: ['Claude / GPT', 'Workflow automation', 'Knowledge systems'],
+    desc: 'Practical AI systems that save real hours, not demos.',
   },
   {
     title: 'Marketing & Growth',
-    desc: 'Landing pages, social presence, and content systems that turn a project into something people follow.',
-    bullets: ['Launch pages', 'Content tooling', 'Brand systems'],
+    desc: 'Landing pages and launches that actually get traction.',
   },
 ];
 
@@ -176,14 +172,14 @@ export default function Home() {
             viewport={{ once: true, margin: '-80px' }}
           >
             <motion.p variants={fadeUp} className={styles.sectionLabel}>
-              What I Do
+              Range
             </motion.p>
             <motion.h2 variants={fadeUp} className={styles.sectionTitle}>
-              Where I focus.
+              Full-stack. Full-funnel.
             </motion.h2>
             <motion.p variants={fadeUp} className={styles.sectionLead}>
-              I move across the stack — and past it. Engineering, GIS, AI, and
-              the marketing muscle to actually launch what I build.
+              Code, maps, and momentum — I build the product and get it in
+              front of people.
             </motion.p>
 
             <motion.div variants={stagger} className={styles.servicesGrid}>
@@ -191,11 +187,6 @@ export default function Home() {
                 <motion.div key={s.title} variants={fadeUp} className={styles.serviceCard}>
                   <h3 className={styles.serviceTitle}>{s.title}</h3>
                   <p className={styles.serviceDesc}>{s.desc}</p>
-                  <ul className={styles.serviceBullets}>
-                    {s.bullets.map((b) => (
-                      <li key={b}>{b}</li>
-                    ))}
-                  </ul>
                 </motion.div>
               ))}
             </motion.div>
@@ -230,19 +221,6 @@ export default function Home() {
               </motion.div>
 
               <motion.div variants={fadeUp} className={styles.aboutContent}>
-                <div className={styles.aboutText}>
-                  <p>
-                    CS grad from Lehigh University, currently coordinating technology
-                    on civic projects in Los Angeles — including designing and building
-                    an internal GIS platform for public engagement.
-                  </p>
-                  <p>
-                    I'm drawn to problems that cross disciplines: building the product,
-                    mapping the data, and getting the word out. Always looking for the
-                    next thing to grow into, technically and professionally.
-                  </p>
-                </div>
-
                 <div className={styles.aboutMeta}>
                   <div className={styles.metaBlock}>
                     <span className={styles.metaLabel}>Currently</span>
@@ -256,12 +234,6 @@ export default function Home() {
                     <span className={styles.metaLabel}>Stack</span>
                     <span className={styles.metaValue}>
                       Next.js · Python · TypeScript · Django · Mapbox · AWS
-                    </span>
-                  </div>
-                  <div className={styles.metaBlock}>
-                    <span className={styles.metaLabel}>Also into</span>
-                    <span className={styles.metaValue}>
-                      Music · mapping · civic tech · side projects
                     </span>
                   </div>
                 </div>

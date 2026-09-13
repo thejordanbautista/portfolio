@@ -86,7 +86,7 @@ const POKEMON = [
   {n:80,name:"Slowbro",types:["Water","Psychic"],gen:1},
   {n:81,name:"Magnemite",types:["Electric","Steel"],gen:1},
   {n:82,name:"Magneton",types:["Electric","Steel"],gen:1},
-  {n:83,name:"Farfetchd",types:["Normal","Flying"],gen:1},
+  {n:83,name:"Farfetch'd",types:["Normal","Flying"],gen:1},
   {n:84,name:"Doduo",types:["Normal","Flying"],gen:1},
   {n:85,name:"Dodrio",types:["Normal","Flying"],gen:1},
   {n:86,name:"Seel",types:["Water"],gen:1},
@@ -265,6 +265,10 @@ function spriteUrl(num) {
 
 function pad(n) { return String(n).padStart(3, '0'); }
 
+// Strips case, spaces, and punctuation so "Ho-Oh", "ho oh", "Farfetch'd",
+// and "farfetchd" all match the same way — no gotchas from exact spelling.
+function normalize(s) { return s.toLowerCase().replace(/[^a-z0-9]/g, ''); }
+
 function buildHints(guess, target) {
   const typesHints = guess.types.map(t => ({ type: t, match: target.types.includes(t) }));
   const genArrow = guess.gen === target.gen ? 'exact' : guess.gen < target.gen ? 'up' : 'down';
@@ -371,9 +375,9 @@ export default function Pokedexle() {
 
   function updateAutocomplete(val) {
     if (!val) { setAcItems([]); return; }
-    const q = val.toLowerCase();
+    const q = normalize(val);
     const matches = POKEMON
-      .filter(p => p.name.toLowerCase().startsWith(q) && !guessedNums.has(p.n))
+      .filter(p => normalize(p.name).startsWith(q) && !guessedNums.has(p.n))
       .slice(0, 8);
     setAcItems(matches);
     setAcIndex(-1);
@@ -419,9 +423,9 @@ export default function Pokedexle() {
   function submitGuess() {
     if (gameOver || !target) return;
     const raw = inputValue.trim();
-    if (!raw) return;
+    if (!raw) { setMessage('⚠️ Type a Pokémon name first!'); return; }
 
-    const match = POKEMON.find(p => p.name.toLowerCase() === raw.toLowerCase());
+    const match = POKEMON.find(p => normalize(p.name) === normalize(raw));
     if (!match) { setMessage('⚠️ Pokémon not found — check spelling!'); return; }
     if (guessedNums.has(match.n)) { setMessage('⚠️ Already guessed that one!'); return; }
 
