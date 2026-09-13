@@ -1,8 +1,7 @@
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, useCallback, useRef } from 'react';
 import Head from 'next/head';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
-import Navbar from '../components/Navbar';
 import HeadshotImg from '../images/jordan-headshot.jpg';
 import GradImg from '../images/jordan-grad.jpg';
 import FleaMarketImg from '../images/jordan-fleamarket.jpg';
@@ -27,32 +26,12 @@ const stagger = {
 /* ── Sections config (drives the bottom nav) ── */
 const sections = [
   { id: 'home', label: 'Home' },
-  { id: 'focus', label: 'Focus' },
   { id: 'about', label: 'About' },
   { id: 'projects', label: 'Work' },
   { id: 'contact', label: 'Contact' },
 ];
 
 /* ── Content ── */
-const focuses = [
-  {
-    title: 'Engineering',
-    desc: 'Full-stack apps and automation, shipped end-to-end.',
-  },
-  {
-    title: 'GIS & Civic Tech',
-    desc: 'Mapping platforms that make public engagement real.',
-  },
-  {
-    title: 'AI & Automation',
-    desc: 'Practical AI systems that save real hours, not demos.',
-  },
-  {
-    title: 'Marketing & Growth',
-    desc: 'Landing pages and launches that actually get traction.',
-  },
-];
-
 const projects = [
   {
     badge: 'Work Project',
@@ -143,6 +122,27 @@ export default function Home() {
   const slideClass = (index) =>
     `${styles.slide} ${active === index ? styles.slideActive : ''}`;
 
+  // Horizontal swipe between sections (mobile). Only fires on a
+  // predominantly horizontal drag, so vertical scrolling inside an
+  // overflowing panel is never hijacked.
+  const touchStart = useRef({ x: 0, y: 0 });
+
+  function handleTouchStart(e) {
+    const t = e.touches[0];
+    touchStart.current = { x: t.clientX, y: t.clientY };
+  }
+
+  function handleTouchEnd(e) {
+    const t = e.changedTouches[0];
+    const dx = t.clientX - touchStart.current.x;
+    const dy = t.clientY - touchStart.current.y;
+    const THRESHOLD = 50;
+    if (Math.abs(dx) > Math.abs(dy) && Math.abs(dx) > THRESHOLD) {
+      if (dx < 0) goTo(active + 1);
+      else goTo(active - 1);
+    }
+  }
+
   return (
     <>
       <Head>
@@ -155,9 +155,12 @@ export default function Home() {
       </Head>
 
       <div className={styles.grain} aria-hidden="true" />
-      <Navbar />
 
-      <main className={styles.main}>
+      <main
+        className={styles.main}
+        onTouchStart={handleTouchStart}
+        onTouchEnd={handleTouchEnd}
+      >
 
         {/* ══════════════ HOME ══════════════ */}
         <section className={slideClass(0)} aria-hidden={active !== 0}>
@@ -189,11 +192,11 @@ export default function Home() {
               </motion.p>
 
               <motion.div variants={fadeUp} className={styles.heroCta}>
-                <button type="button" onClick={() => goTo(4)} className={styles.btnPrimary}>
+                <button type="button" onClick={() => goTo(3)} className={styles.btnPrimary}>
                   Get in Touch
                   <span className={styles.btnArrow}>→</span>
                 </button>
-                <button type="button" onClick={() => goTo(3)} className={styles.btnSecondary}>
+                <button type="button" onClick={() => goTo(2)} className={styles.btnSecondary}>
                   See Projects
                 </button>
               </motion.div>
@@ -212,43 +215,13 @@ export default function Home() {
           </motion.div>
         </section>
 
-        {/* ══════════════ FOCUS ══════════════ */}
+        {/* ══════════════ ABOUT ══════════════ */}
         <section className={slideClass(1)} aria-hidden={active !== 1}>
           <motion.div
             className={styles.sectionInner}
             variants={stagger}
             initial="hidden"
             animate={active === 1 ? 'show' : 'hidden'}
-          >
-            <motion.p variants={fadeUp} className={styles.sectionLabel}>
-              Range
-            </motion.p>
-            <motion.h2 variants={fadeUp} className={styles.sectionTitle}>
-              Full-stack. Full-funnel.
-            </motion.h2>
-            <motion.p variants={fadeUp} className={styles.sectionLead}>
-              Code, maps, and momentum — I build the product and get it in
-              front of people.
-            </motion.p>
-
-            <motion.div variants={stagger} className={styles.servicesGrid}>
-              {focuses.map((s) => (
-                <motion.div key={s.title} variants={fadeUp} className={styles.serviceCard}>
-                  <h3 className={styles.serviceTitle}>{s.title}</h3>
-                  <p className={styles.serviceDesc}>{s.desc}</p>
-                </motion.div>
-              ))}
-            </motion.div>
-          </motion.div>
-        </section>
-
-        {/* ══════════════ ABOUT ══════════════ */}
-        <section className={slideClass(2)} aria-hidden={active !== 2}>
-          <motion.div
-            className={styles.sectionInner}
-            variants={stagger}
-            initial="hidden"
-            animate={active === 2 ? 'show' : 'hidden'}
           >
             <motion.p variants={fadeUp} className={styles.sectionLabel}>
               About
@@ -291,12 +264,12 @@ export default function Home() {
         </section>
 
         {/* ══════════════ PROJECTS ══════════════ */}
-        <section className={slideClass(3)} aria-hidden={active !== 3}>
+        <section className={slideClass(2)} aria-hidden={active !== 2}>
           <motion.div
             className={styles.sectionInner}
             variants={stagger}
             initial="hidden"
-            animate={active === 3 ? 'show' : 'hidden'}
+            animate={active === 2 ? 'show' : 'hidden'}
           >
             <motion.p variants={fadeUp} className={styles.sectionLabel}>
               Projects
@@ -323,10 +296,10 @@ export default function Home() {
                     className={styles.projectCard}
                     {...linkProps}
                   >
-                    <div
-                      className={`${styles.projectImageSlot} ${p.pixel ? styles.projectImagePixel : ''}`}
-                    >
-                      {p.image ? (
+                    {p.image && (
+                      <div
+                        className={`${styles.projectImageSlot} ${p.pixel ? styles.projectImagePixel : ''}`}
+                      >
                         <Image
                           src={p.image}
                           alt={p.imageAlt}
@@ -335,12 +308,8 @@ export default function Home() {
                           height={p.pixel ? 220 : undefined}
                           sizes="(max-width: 760px) 90vw, 360px"
                         />
-                      ) : (
-                        <span className={styles.projectImagePlaceholder}>
-                          Visual coming soon
-                        </span>
-                      )}
-                    </div>
+                      </div>
+                    )}
                     <div className={styles.projectBody}>
                       <div className={styles.projectMeta}>
                         <span className={styles.badge}>{p.badge}</span>
@@ -369,12 +338,12 @@ export default function Home() {
         </section>
 
         {/* ══════════════ CONTACT ══════════════ */}
-        <section className={slideClass(4)} aria-hidden={active !== 4}>
+        <section className={slideClass(3)} aria-hidden={active !== 3}>
           <motion.div
             className={styles.sectionInner}
             variants={stagger}
             initial="hidden"
-            animate={active === 4 ? 'show' : 'hidden'}
+            animate={active === 3 ? 'show' : 'hidden'}
           >
             <motion.p variants={fadeUp} className={styles.sectionLabel}>
               Contact
