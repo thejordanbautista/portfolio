@@ -426,8 +426,8 @@
 
 .aboutGrid {
   display: grid;
-  grid-template-columns: 1.1fr 1fr;
-  gap: 80px;
+  grid-template-columns: 0.85fr 1.15fr;
+  gap: 60px;
   align-items: start;
   margin-top: 28px;
 }
@@ -435,8 +435,32 @@
 @media (max-width: 760px) {
   .aboutGrid {
     grid-template-columns: 1fr;
-    gap: 48px;
+    gap: 40px;
   }
+}
+
+.aboutPhoto {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  border-radius: 18px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  background: var(--bg-surface);
+  box-shadow: 0 24px 60px -30px rgba(0, 0, 0, 0.35);
+}
+
+@media (max-width: 760px) {
+  .aboutPhoto {
+    max-width: 320px;
+    margin: 0 auto;
+  }
+}
+
+.aboutContent {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
 }
 
 .aboutText {

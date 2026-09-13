@@ -47,18 +47,6 @@ const focuses = [
   },
 ];
 
-const marqueeItems = [
-  'Software Engineer',
-  'Los Angeles',
-  'Next.js',
-  'Python',
-  'AI',
-  'TypeScript',
-  'Always Building',
-  'Music',
-  'Mapping',
-];
-
 const projects = [
   {
     badge: 'Work Project',
@@ -106,15 +94,6 @@ const projects = [
     imageAlt: 'Dragonite pixel sprite',
     pixel: true,
     linkLabel: 'Play',
-  },
-];
-
-const moments = [
-  {
-    img: GradImg,
-    label: 'Lehigh University',
-    caption: "B.S. Computer Science & Engineering, '23.",
-    pos: 'center 30%',
   },
 ];
 
@@ -187,20 +166,6 @@ export default function Home() {
           </motion.div>
         </section>
 
-        {/* ══════════════ MARQUEE ══════════════ */}
-        <section className={styles.marqueeSection} aria-hidden="true">
-          <div className={styles.marquee}>
-            <div className={styles.marqueeTrack}>
-              {[...marqueeItems, ...marqueeItems, ...marqueeItems].map((item, i) => (
-                <span key={i} className={styles.marqueeItem}>
-                  {item}
-                  <span className={styles.marqueeStar}>✦</span>
-                </span>
-              ))}
-            </div>
-          </div>
-        </section>
-
         {/* ══════════════ FOCUS / WHAT I DO ══════════════ */}
         <section className={styles.section} id="services">
           <motion.div
@@ -254,68 +219,54 @@ export default function Home() {
             </motion.h2>
 
             <div className={styles.aboutGrid}>
-              <motion.div variants={fadeUp} className={styles.aboutText}>
-                <p>
-                  CS grad from Lehigh University, currently coordinating technology
-                  on civic projects in Los Angeles — including designing and building
-                  an internal GIS platform for public engagement.
-                </p>
-                <p>
-                  I'm drawn to problems that cross disciplines: building the product,
-                  mapping the data, and getting the word out. Always looking for the
-                  next thing to grow into, technically and professionally.
-                </p>
+              <motion.div variants={fadeUp} className={styles.aboutPhoto}>
+                <Image
+                  src={GradImg}
+                  alt="Jordan Bautista-Lazo, Lehigh University graduation"
+                  fill
+                  sizes="(max-width: 760px) 90vw, 40vw"
+                  style={{ objectFit: 'cover', objectPosition: 'center 30%' }}
+                />
               </motion.div>
 
-              <motion.div variants={fadeUp} className={styles.aboutMeta}>
-                <div className={styles.metaBlock}>
-                  <span className={styles.metaLabel}>Currently</span>
-                  <span className={styles.metaValue}>Tech Coordinator · Los Angeles</span>
+              <motion.div variants={fadeUp} className={styles.aboutContent}>
+                <div className={styles.aboutText}>
+                  <p>
+                    CS grad from Lehigh University, currently coordinating technology
+                    on civic projects in Los Angeles — including designing and building
+                    an internal GIS platform for public engagement.
+                  </p>
+                  <p>
+                    I'm drawn to problems that cross disciplines: building the product,
+                    mapping the data, and getting the word out. Always looking for the
+                    next thing to grow into, technically and professionally.
+                  </p>
                 </div>
-                <div className={styles.metaBlock}>
-                  <span className={styles.metaLabel}>Studied</span>
-                  <span className={styles.metaValue}>CS · Lehigh University</span>
-                </div>
-                <div className={styles.metaBlock}>
-                  <span className={styles.metaLabel}>Stack</span>
-                  <span className={styles.metaValue}>
-                    Next.js · Python · TypeScript · Django · Mapbox · AWS
-                  </span>
-                </div>
-                <div className={styles.metaBlock}>
-                  <span className={styles.metaLabel}>Also into</span>
-                  <span className={styles.metaValue}>
-                    Music · mapping · civic tech · side projects
-                  </span>
+
+                <div className={styles.aboutMeta}>
+                  <div className={styles.metaBlock}>
+                    <span className={styles.metaLabel}>Currently</span>
+                    <span className={styles.metaValue}>Tech Coordinator · Los Angeles</span>
+                  </div>
+                  <div className={styles.metaBlock}>
+                    <span className={styles.metaLabel}>Studied</span>
+                    <span className={styles.metaValue}>CS · Lehigh University</span>
+                  </div>
+                  <div className={styles.metaBlock}>
+                    <span className={styles.metaLabel}>Stack</span>
+                    <span className={styles.metaValue}>
+                      Next.js · Python · TypeScript · Django · Mapbox · AWS
+                    </span>
+                  </div>
+                  <div className={styles.metaBlock}>
+                    <span className={styles.metaLabel}>Also into</span>
+                    <span className={styles.metaValue}>
+                      Music · mapping · civic tech · side projects
+                    </span>
+                  </div>
                 </div>
               </motion.div>
             </div>
-
-            {/* Moments gallery */}
-            <motion.div variants={stagger} className={styles.momentsRow}>
-              {moments.map((m, i) => (
-                <motion.figure
-                  key={i}
-                  variants={fadeUp}
-                  className={styles.moment}
-                  style={{ '--rot': `${(i - 1) * 1.5}deg` }}
-                >
-                  <div className={styles.momentImageWrap}>
-                    <Image
-                      src={m.img}
-                      alt={m.caption}
-                      fill
-                      sizes="(max-width: 760px) 90vw, 320px"
-                      style={{ objectFit: 'cover', objectPosition: m.pos }}
-                    />
-                  </div>
-                  <figcaption className={styles.momentCaption}>
-                    <span className={styles.momentLabel}>{m.label}</span>
-                    <span className={styles.momentText}>{m.caption}</span>
-                  </figcaption>
-                </motion.figure>
-              ))}
-            </motion.div>
           </motion.div>
         </section>
 
