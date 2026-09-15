@@ -18,7 +18,7 @@ export default function RouteMap() {
       viewBox="0 0 960 600"
       width="100%"
       height="100%"
-      preserveAspectRatio="xMidYMid slice"
+      preserveAspectRatio="xMidYMin slice"
       role="img"
       aria-labelledby="routeMapTitle"
     >
