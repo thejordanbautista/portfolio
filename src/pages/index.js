@@ -6,7 +6,6 @@ import HeadshotImg from '../images/jordan-headshot.jpg';
 import GradImg from '../images/jordan-grad.jpg';
 import FleaMarketImg from '../images/jordan-fleamarket.jpg';
 import DragoniteImg from '../images/dragonite.png';
-import RouteMap from '../components/RouteMap';
 import styles from './home.module.css';
 
 /* ── Animation variants ── */
@@ -35,15 +34,15 @@ const sections = [
 /* ── Content ── */
 const projects = [
   {
-    badge: 'Work Project',
-    title: 'Arellano Insight',
+    badge: 'Personal Project',
+    title: 'Drop The Map',
     description:
-      "A GIS-based public engagement platform I designed and built as part of my role at Arellano Associates. Lets project teams launch configurable interactive maps with custom study areas, categorized public comments, and survey questions for community input.",
-    tech: ['TypeScript', 'Mapbox', 'Supabase', 'Cloudflare'],
+      'An AI mapping platform — describe the data you want in plain English, and it finds the sources, builds the layers, and renders an interactive map in seconds. No GIS degree required.',
+    tech: ['Next.js', 'Mapbox', 'AI/LLM'],
     demo: null,
-    accent: 'Civic Tech',
+    accent: 'AI Mapping Software',
     image: null,
-    linkLabel: null,
+    linkLabel: 'Coming Soon',
   },
   {
     badge: 'Personal Project',
@@ -262,15 +261,6 @@ export default function Home() {
                 </div>
               </motion.div>
             </div>
-
-            <motion.div variants={fadeUp} className={styles.aboutRouteMap}>
-              <div className={styles.aboutRouteMapFrame}>
-                <RouteMap />
-              </div>
-              <p className={styles.aboutRouteCaption}>
-                Portland, OR → Bethlehem, PA → Los Angeles, CA
-              </p>
-            </motion.div>
           </motion.div>
         </section>
 
