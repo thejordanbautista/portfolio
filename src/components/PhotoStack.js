@@ -1,64 +1,91 @@
+import { AnimatePresence, motion } from 'framer-motion';
 import { useState } from 'react';
-import { motion } from 'framer-motion';
 import Image from 'next/image';
 import styles from '../pages/home.module.css';
 
-// Renders up to 5 photos at a time from a larger pool (works fine with
-// anywhere from 1 to ~10+ entries). Click/tap rotates the stack — the
-// front card's caption is the only one shown.
+// Three-card fan: a main photo in the center with one diagonal photo
+// peeking out on each side. Click the left/right card to step through
+// the pool (wraps around). Works with any pool size >= 3.
 export default function PhotoStack({ photos }) {
   const [index, setIndex] = useState(0);
-  const visibleCount = Math.min(5, photos.length);
+  const count = photos.length;
 
-  const next = () => setIndex((i) => (i + 1) % photos.length);
+  const go = (delta) => setIndex((i) => (i + delta + count) % count);
 
-  const stack = Array.from({ length: visibleCount }, (_, i) => {
-    const photoIndex = (index + i) % photos.length;
-    return { ...photos[photoIndex], pos: i, photoIndex };
-  });
+  const leftIndex = (index - 1 + count) % count;
+  const rightIndex = (index + 1) % count;
+
+  const left = photos[leftIndex];
+  const center = photos[index];
+  const right = photos[rightIndex];
 
   return (
-    <div className={styles.photoStackWrap}>
-      <button
-        type="button"
-        className={styles.photoStack}
-        onClick={next}
-        aria-label="Show next photo"
-      >
-        {stack
-          .slice()
-          .reverse()
-          .map((p) => (
+    <div className={styles.photoFanWrap}>
+      <div className={styles.photoFan}>
+        <button
+          type="button"
+          className={`${styles.fanCard} ${styles.fanSide} ${styles.fanLeft}`}
+          onClick={() => go(-1)}
+          aria-label="Previous photo"
+        >
+          <AnimatePresence mode="wait" initial={false}>
             <motion.div
-              key={p.photoIndex}
-              className={styles.photoStackCard}
-              animate={{
-                scale: 1 - p.pos * 0.045,
-                y: p.pos * 12,
-                rotate:
-                  p.pos === 0
-                    ? 0
-                    : (p.photoIndex % 2 === 0 ? 1 : -1) * (2 + p.pos * 1.5),
-                opacity: 1 - p.pos * 0.2,
-              }}
-              transition={{ type: 'spring', stiffness: 260, damping: 26 }}
-              style={{ zIndex: visibleCount - p.pos }}
+              key={leftIndex}
+              className={styles.fanImageWrap}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.25 }}
+            >
+              <Image src={left.src} alt={left.alt} fill sizes="140px" style={{ objectFit: 'cover' }} />
+            </motion.div>
+          </AnimatePresence>
+        </button>
+
+        <div className={`${styles.fanCard} ${styles.fanCenter}`}>
+          <AnimatePresence mode="wait" initial={false}>
+            <motion.div
+              key={index}
+              className={styles.fanImageWrap}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.25 }}
             >
               <Image
-                src={p.src}
-                alt={p.alt}
+                src={center.src}
+                alt={center.alt}
                 fill
-                sizes="(max-width: 700px) 80vw, 340px"
+                sizes="(max-width: 700px) 60vw, 320px"
                 style={{ objectFit: 'cover' }}
               />
-              {p.pos === 0 && (
-                <div className={styles.photoStackCaption}>{p.caption}</div>
-              )}
+              <div className={styles.photoStackCaption}>{center.caption}</div>
             </motion.div>
-          ))}
-      </button>
+          </AnimatePresence>
+        </div>
+
+        <button
+          type="button"
+          className={`${styles.fanCard} ${styles.fanSide} ${styles.fanRight}`}
+          onClick={() => go(1)}
+          aria-label="Next photo"
+        >
+          <AnimatePresence mode="wait" initial={false}>
+            <motion.div
+              key={rightIndex}
+              className={styles.fanImageWrap}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.25 }}
+            >
+              <Image src={right.src} alt={right.alt} fill sizes="140px" style={{ objectFit: 'cover' }} />
+            </motion.div>
+          </AnimatePresence>
+        </button>
+      </div>
       <p className={styles.photoStackHint}>
-        Tap for another · {index + 1}/{photos.length}
+        {index + 1}/{count}
       </p>
     </div>
   );

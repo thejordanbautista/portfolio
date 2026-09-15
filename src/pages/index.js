@@ -16,23 +16,22 @@ const albumPhotos = [
   {
     src: GradImg,
     alt: 'Jordan Bautista-Lazo at Lehigh University graduation',
-    caption: 'Lehigh University — CS degree, cap and gown.',
+    caption: 'Lehigh University — B.S. Computer Science.',
   },
   {
     src: UmgInternImg,
     alt: 'Award plaque for Summer 2022 Universal Music Group internship',
-    caption:
-      'Summer 2022 — Global Tech Intern at Universal Music Group. Probably where MixDro started.',
+    caption: 'Summer 2022 — Global Technology Intern, Universal Music Group.',
   },
   {
     src: MoreThanJordansImg,
     alt: 'Vintage Michael Jordan Bulls t-shirt from More Than Jordans inventory',
-    caption: 'Actual inventory from More Than Jordans — yes, reselling Jordans is the joke.',
+    caption: 'Inventory from More Than Jordans, my vintage resale business.',
   },
   {
     src: FleaMarketImg,
     alt: 'Running More Than Jordans at LA flea markets',
-    caption: 'Running the booth at an LA flea market.',
+    caption: 'More Than Jordans, live at an LA flea market.',
   },
 ];
 

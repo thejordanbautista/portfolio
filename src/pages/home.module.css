@@ -533,7 +533,7 @@
    ABOUT
 ================================ */
 
-.photoStackWrap {
+.photoFanWrap {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -541,25 +541,55 @@
   margin-top: 28px;
 }
 
-.photoStack {
-  position: relative;
-  width: 100%;
-  max-width: 340px;
-  aspect-ratio: 4 / 5;
-  border: none;
-  background: none;
-  padding: 0;
-  cursor: pointer;
+.photoFan {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.photoStackCard {
-  position: absolute;
-  inset: 0;
-  border-radius: 18px;
-  overflow: hidden;
+.fanCard {
+  position: relative;
   border: 1px solid var(--border);
   background: var(--bg-surface);
-  box-shadow: 0 24px 60px -30px rgba(0, 0, 0, 0.35);
+  border-radius: 16px;
+  overflow: hidden;
+  padding: 0;
+}
+
+.fanCenter {
+  width: 220px;
+  aspect-ratio: 4 / 5;
+  z-index: 3;
+  cursor: default;
+  box-shadow: 0 24px 60px -30px rgba(0, 0, 0, 0.4);
+}
+
+.fanSide {
+  width: 110px;
+  aspect-ratio: 4 / 5;
+  z-index: 1;
+  opacity: 0.55;
+  cursor: pointer;
+  transition: opacity 0.2s;
+}
+
+.fanSide:hover {
+  opacity: 0.85;
+}
+
+.fanLeft {
+  transform: rotate(-9deg);
+  margin-right: -26px;
+}
+
+.fanRight {
+  transform: rotate(9deg);
+  margin-left: -26px;
+}
+
+.fanImageWrap {
+  position: absolute;
+  inset: 0;
 }
 
 .photoStackCaption {
@@ -581,8 +611,20 @@
 }
 
 @media (max-width: 700px) {
-  .photoStack {
-    max-width: 260px;
+  .fanCenter {
+    width: 168px;
+  }
+
+  .fanSide {
+    width: 78px;
+  }
+
+  .fanLeft {
+    margin-right: -18px;
+  }
+
+  .fanRight {
+    margin-left: -18px;
   }
 
   .photoStackCaption {
