@@ -120,8 +120,8 @@ export default function Home() {
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, [active, goTo]);
 
-  const slideClass = (index) =>
-    `${styles.slide} ${active === index ? styles.slideActive : ''}`;
+  const slideClass = (index, extra) =>
+    `${styles.slide} ${active === index ? styles.slideActive : ''} ${extra || ''}`;
 
   // Horizontal swipe between sections (mobile). Only fires on a
   // predominantly horizontal drag, so vertical scrolling inside an
@@ -164,7 +164,7 @@ export default function Home() {
       >
 
         {/* ══════════════ HOME ══════════════ */}
-        <section className={slideClass(0)} aria-hidden={active !== 0}>
+        <section className={slideClass(0, styles.slideCentered)} aria-hidden={active !== 0}>
           <motion.div
             className={styles.heroGrid}
             variants={stagger}
@@ -219,9 +219,6 @@ export default function Home() {
 
         {/* ══════════════ ABOUT ══════════════ */}
         <section className={slideClass(1)} aria-hidden={active !== 1}>
-          <div className={styles.aboutMapBg} aria-hidden="true">
-            <RouteMap />
-          </div>
           <motion.div
             className={styles.sectionInner}
             variants={stagger}
@@ -265,11 +262,20 @@ export default function Home() {
                 </div>
               </motion.div>
             </div>
+
+            <motion.div variants={fadeUp} className={styles.aboutRouteMap}>
+              <div className={styles.aboutRouteMapFrame}>
+                <RouteMap />
+              </div>
+              <p className={styles.aboutRouteCaption}>
+                Portland, OR → Bethlehem, PA → Los Angeles, CA
+              </p>
+            </motion.div>
           </motion.div>
         </section>
 
         {/* ══════════════ PROJECTS ══════════════ */}
-        <section className={slideClass(2)} aria-hidden={active !== 2}>
+        <section className={slideClass(2, styles.slideScrollable)} aria-hidden={active !== 2}>
           <motion.div
             className={styles.sectionInner}
             variants={stagger}
@@ -343,7 +349,7 @@ export default function Home() {
         </section>
 
         {/* ══════════════ CONTACT ══════════════ */}
-        <section className={slideClass(3)} aria-hidden={active !== 3}>
+        <section className={slideClass(3, styles.slideCentered)} aria-hidden={active !== 3}>
           <motion.div
             className={styles.sectionInner}
             variants={stagger}

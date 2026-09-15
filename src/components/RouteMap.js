@@ -18,7 +18,7 @@ export default function RouteMap() {
       viewBox="0 0 960 600"
       width="100%"
       height="100%"
-      preserveAspectRatio="xMidYMid meet"
+      preserveAspectRatio="xMidYMid slice"
       role="img"
       aria-labelledby="routeMapTitle"
     >
@@ -31,7 +31,7 @@ export default function RouteMap() {
       <path
         d={OUTLINE_PATH}
         fill="var(--accent)"
-        fillOpacity="0.07"
+        fillOpacity="0.12"
         stroke="var(--border)"
         strokeWidth="2.5"
         strokeLinejoin="round"
@@ -64,22 +64,22 @@ export default function RouteMap() {
       </g>
 
       {/* Portland, OR */}
-      <circle cx="115" cy="95" r="11" fill="none" stroke="var(--accent)" strokeWidth="1.5" opacity="0.45" />
+      <circle cx="115" cy="95" r="11" fill="none" stroke="var(--accent)" strokeWidth="1.5" opacity="0.6" />
       <circle cx="115" cy="95" r="5.5" fill="var(--accent)" />
-      <text x="134" y="91" fontSize="17" fontWeight="600" fill="var(--text)" opacity="0.85">Portland, OR</text>
-      <text x="134" y="111" fontSize="13" fill="var(--text-muted)" opacity="0.8">Grew up here</text>
+      <text x="134" y="91" fontSize="17" fontWeight="600" fill="var(--text)">Portland, OR</text>
+      <text x="134" y="111" fontSize="13" fill="var(--text-muted)">Grew up here</text>
 
       {/* Bethlehem, PA */}
-      <circle cx="715" cy="295" r="11" fill="none" stroke="var(--accent)" strokeWidth="1.5" opacity="0.45" />
+      <circle cx="715" cy="295" r="11" fill="none" stroke="var(--accent)" strokeWidth="1.5" opacity="0.6" />
       <circle cx="715" cy="295" r="5.5" fill="var(--accent)" />
-      <text x="700" y="276" fontSize="17" fontWeight="600" fill="var(--text)" textAnchor="end" opacity="0.85">Bethlehem, PA</text>
-      <text x="700" y="296" fontSize="13" fill="var(--text-muted)" textAnchor="end" opacity="0.8">Studied at Lehigh</text>
+      <text x="700" y="276" fontSize="17" fontWeight="600" fill="var(--text)" textAnchor="end">Bethlehem, PA</text>
+      <text x="700" y="296" fontSize="13" fill="var(--text-muted)" textAnchor="end">Studied at Lehigh</text>
 
       {/* Los Angeles, CA */}
-      <circle cx="90" cy="345" r="11" fill="none" stroke="var(--accent)" strokeWidth="1.5" opacity="0.45" />
+      <circle cx="90" cy="345" r="11" fill="none" stroke="var(--accent)" strokeWidth="1.5" opacity="0.6" />
       <circle cx="90" cy="345" r="5.5" fill="var(--accent)" />
-      <text x="109" y="341" fontSize="17" fontWeight="600" fill="var(--text)" opacity="0.85">Los Angeles, CA</text>
-      <text x="109" y="361" fontSize="13" fill="var(--text-muted)" opacity="0.8">Based here now</text>
+      <text x="109" y="341" fontSize="17" fontWeight="600" fill="var(--text)">Los Angeles, CA</text>
+      <text x="109" y="361" fontSize="13" fill="var(--text-muted)">Based here now</text>
     </svg>
   );
 }
