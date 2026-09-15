@@ -396,6 +396,8 @@
 }
 
 .sectionInner {
+  position: relative;
+  z-index: 1;
   max-width: 1100px;
   margin: 0 auto;
   padding: 0 clamp(24px, 8vw, 140px);
@@ -537,30 +539,30 @@
   }
 }
 
-.aboutRouteMap {
-  display: none;
-  flex-direction: column;
-  gap: 12px;
-  border: 1px solid var(--border);
-  border-radius: 18px;
-  background: var(--bg-surface);
-  padding: 18px;
+.aboutMapBg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  pointer-events: none;
+  opacity: 0.9;
 }
 
-.aboutRouteCaption {
-  font-size: 0.78rem;
-  color: var(--text-muted);
-  text-align: center;
+.aboutMapBg svg {
+  width: 135%;
+  max-width: 1100px;
 }
 
-@media (min-width: 981px) {
-  .aboutGrid {
-    grid-template-columns: 0.7fr 1fr 0.85fr;
-    gap: 48px;
+@media (max-width: 700px) {
+  .aboutMapBg {
+    opacity: 0.55;
   }
 
-  .aboutRouteMap {
-    display: flex;
+  .aboutMapBg svg {
+    width: 220%;
   }
 }
 
@@ -959,8 +961,8 @@
 @media (max-width: 700px) {
   .slide {
     align-items: flex-start;
-    padding-top: 16px;
-    padding-bottom: 64px;
+    padding-top: 20px;
+    padding-bottom: 68px;
   }
 
   .sectionNav {
@@ -973,51 +975,59 @@
   }
 
   .sectionTitle {
-    font-size: 1.5rem;
-    margin-bottom: 8px;
+    font-size: 1.7rem;
+    margin-bottom: 10px;
   }
 
   .sectionTitleLg {
-    font-size: 1.8rem;
+    font-size: 2rem;
     margin-bottom: 12px;
   }
 
   .sectionLead {
-    font-size: 0.85rem;
-    line-height: 1.45;
-    margin-bottom: 16px;
+    font-size: 0.92rem;
+    line-height: 1.5;
+    margin-bottom: 18px;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
   }
 
   /* -- hero -- */
   .heroGrid {
-    gap: 16px;
+    gap: 18px;
   }
 
   .heroPhoto {
-    max-width: 96px;
+    max-width: 140px;
     aspect-ratio: 1 / 1;
     border-radius: 50%;
   }
 
   .statusRow {
     padding: 5px 12px 5px 10px;
-    margin-bottom: 12px;
+    margin-bottom: 14px;
   }
 
   .heroTitle {
-    font-size: 2rem;
-    margin-bottom: 6px;
+    font-size: 2.5rem;
+    margin-bottom: 8px;
   }
 
   .heroRole {
-    font-size: 0.9rem;
-    margin-bottom: 10px;
+    font-size: 1rem;
+    margin-bottom: 12px;
   }
 
   .heroBio {
-    font-size: 0.85rem;
+    font-size: 0.95rem;
     line-height: 1.5;
-    margin-bottom: 16px;
+    margin-bottom: 18px;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
   }
 
   .heroCta {
@@ -1026,51 +1036,51 @@
 
   .btnPrimary,
   .btnSecondary {
-    padding: 10px 18px;
-    font-size: 0.82rem;
+    padding: 11px 20px;
+    font-size: 0.88rem;
   }
 
   /* -- about -- */
   .aboutGrid {
-    grid-template-columns: 92px 1fr;
-    gap: 14px;
+    grid-template-columns: 110px 1fr;
+    gap: 18px;
     align-items: center;
-    margin-top: 4px;
+    margin-top: 8px;
   }
 
   .aboutPhoto {
-    max-width: 92px;
+    max-width: 110px;
     aspect-ratio: 1 / 1;
     border-radius: 50%;
   }
 
   .aboutContent {
-    gap: 10px;
+    gap: 12px;
   }
 
   .aboutMeta {
-    gap: 10px;
+    gap: 14px;
     padding-top: 0;
   }
 
   .metaBlock {
-    gap: 2px;
-    padding-bottom: 8px;
+    gap: 3px;
+    padding-bottom: 10px;
   }
 
   .metaLabel {
-    font-size: 0.62rem;
+    font-size: 0.68rem;
   }
 
   .metaValue {
-    font-size: 0.8rem;
-    line-height: 1.3;
+    font-size: 0.92rem;
+    line-height: 1.35;
   }
 
   /* -- projects -- */
   .projectGrid {
     grid-template-columns: repeat(2, 1fr);
-    gap: 8px;
+    gap: 10px;
   }
 
   .projectImageSlot {
@@ -1078,30 +1088,30 @@
   }
 
   .projectBody {
-    padding: 10px;
-    gap: 4px;
+    padding: 12px;
+    gap: 6px;
   }
 
   .projectMeta {
-    gap: 4px;
+    gap: 5px;
     margin-bottom: 0;
     flex-wrap: wrap;
   }
 
   .badge,
   .accentBadge {
-    font-size: 0.56rem;
-    padding: 2px 6px;
+    font-size: 0.62rem;
+    padding: 3px 7px;
   }
 
   .cardTitle {
-    font-size: 0.85rem;
+    font-size: 0.95rem;
     line-height: 1.25;
   }
 
   .cardDesc {
-    font-size: 0.7rem;
-    line-height: 1.35;
+    font-size: 0.78rem;
+    line-height: 1.4;
     display: -webkit-box;
     -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
@@ -1109,50 +1119,50 @@
   }
 
   .cardBottom {
-    margin-top: 4px;
-    padding-top: 8px;
-    gap: 4px;
+    margin-top: 6px;
+    padding-top: 10px;
+    gap: 6px;
   }
 
   .techList {
-    gap: 3px;
+    gap: 4px;
   }
 
   .techTag {
-    font-size: 0.6rem;
-    padding: 2px 6px;
+    font-size: 0.66rem;
+    padding: 3px 7px;
   }
 
   .cardLink {
-    font-size: 0.72rem;
+    font-size: 0.78rem;
   }
 
   /* -- contact -- */
   .contactSub {
-    font-size: 0.9rem;
+    font-size: 0.98rem;
     line-height: 1.5;
-    margin-bottom: 16px;
+    margin-bottom: 18px;
   }
 
   .contactCtaRow {
-    gap: 14px;
+    gap: 16px;
   }
 
   .contactLinks {
-    gap: 14px;
+    gap: 16px;
   }
 
   .contactLink {
-    font-size: 0.8rem;
+    font-size: 0.88rem;
   }
 
   .contactSub ~ .footerCopy,
   .contactCtaRow ~ .footerCopy {
-    margin-top: 18px;
-    padding-top: 12px;
+    margin-top: 20px;
+    padding-top: 14px;
   }
 
   .footerCopy {
-    font-size: 0.68rem;
+    font-size: 0.72rem;
   }
 }

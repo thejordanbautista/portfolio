@@ -219,6 +219,9 @@ export default function Home() {
 
         {/* ══════════════ ABOUT ══════════════ */}
         <section className={slideClass(1)} aria-hidden={active !== 1}>
+          <div className={styles.aboutMapBg} aria-hidden="true">
+            <RouteMap />
+          </div>
           <motion.div
             className={styles.sectionInner}
             variants={stagger}
@@ -260,13 +263,6 @@ export default function Home() {
                     </span>
                   </div>
                 </div>
-              </motion.div>
-
-              <motion.div variants={fadeUp} className={styles.aboutRouteMap}>
-                <RouteMap />
-                <p className={styles.aboutRouteCaption}>
-                  Portland, OR → Bethlehem, PA → Los Angeles, CA
-                </p>
               </motion.div>
             </div>
           </motion.div>
