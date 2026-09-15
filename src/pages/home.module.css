@@ -584,36 +584,63 @@
   line-height: 1.8;
 }
 
-.aboutMeta {
-  display: flex;
-  flex-direction: column;
-  gap: 24px;
-  padding-top: 6px;
+.terminalCard {
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: var(--bg-card);
+  overflow: hidden;
+  box-shadow: 0 24px 60px -30px rgba(0, 0, 0, 0.35);
+  font-family: 'SF Mono', 'Menlo', 'Consolas', 'Liberation Mono', monospace;
 }
 
-.metaBlock {
+.terminalHeader {
   display: flex;
-  flex-direction: column;
-  gap: 6px;
-  padding-bottom: 20px;
+  align-items: center;
+  gap: 7px;
+  padding: 10px 14px;
+  background: var(--bg-surface);
   border-bottom: 1px solid var(--border);
 }
 
-.metaBlock:last-child {
-  border-bottom: none;
-  padding-bottom: 0;
+.terminalDot {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: var(--border);
 }
 
-.metaLabel {
-  font-size: 0.7rem;
-  font-weight: 600;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
+.terminalPath {
+  margin-left: 8px;
+  font-size: 0.72rem;
   color: var(--text-faint);
 }
 
-.metaValue {
-  font-size: 0.95rem;
+.terminalBody {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 16px;
+}
+
+.terminalRow {
+  display: grid;
+  grid-template-columns: 132px 1fr;
+  gap: 10px;
+}
+
+.terminalPrompt {
+  font-size: 0.78rem;
+  color: var(--accent);
+  white-space: nowrap;
+}
+
+.terminalPrompt::before {
+  content: '$ ';
+  color: var(--text-faint);
+}
+
+.terminalValue {
+  font-size: 0.82rem;
   color: var(--text);
   line-height: 1.5;
 }
@@ -1023,39 +1050,43 @@
 
   /* -- about -- */
   .aboutGrid {
-    grid-template-columns: 110px 1fr;
-    gap: 18px;
-    align-items: center;
+    grid-template-columns: 1fr;
+    gap: 14px;
     margin-top: 8px;
   }
 
   .aboutPhoto {
-    max-width: 110px;
+    max-width: 84px;
     aspect-ratio: 1 / 1;
     border-radius: 50%;
+    margin: 0 auto;
   }
 
   .aboutContent {
     gap: 12px;
   }
 
-  .aboutMeta {
-    gap: 14px;
-    padding-top: 0;
+  .terminalHeader {
+    padding: 8px 12px;
   }
 
-  .metaBlock {
-    gap: 3px;
-    padding-bottom: 10px;
+  .terminalBody {
+    padding: 12px;
+    gap: 10px;
   }
 
-  .metaLabel {
-    font-size: 0.68rem;
+  .terminalRow {
+    grid-template-columns: 1fr;
+    gap: 2px;
   }
 
-  .metaValue {
-    font-size: 0.92rem;
-    line-height: 1.35;
+  .terminalPrompt {
+    font-size: 0.72rem;
+  }
+
+  .terminalValue {
+    font-size: 0.78rem;
+    line-height: 1.4;
   }
 
   /* -- projects: image-forward 2x2, minimal text, this panel may scroll -- */

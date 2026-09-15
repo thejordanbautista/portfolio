@@ -243,20 +243,44 @@ export default function Home() {
               </motion.div>
 
               <motion.div variants={fadeUp} className={styles.aboutContent}>
-                <div className={styles.aboutMeta}>
-                  <div className={styles.metaBlock}>
-                    <span className={styles.metaLabel}>Currently</span>
-                    <span className={styles.metaValue}>Tech Coordinator · Los Angeles</span>
+                <div className={styles.terminalCard}>
+                  <div className={styles.terminalHeader}>
+                    <span className={styles.terminalDot} />
+                    <span className={styles.terminalDot} />
+                    <span className={styles.terminalDot} />
+                    <span className={styles.terminalPath}>jordan@portfolio</span>
                   </div>
-                  <div className={styles.metaBlock}>
-                    <span className={styles.metaLabel}>Studied</span>
-                    <span className={styles.metaValue}>CS · Lehigh University</span>
-                  </div>
-                  <div className={styles.metaBlock}>
-                    <span className={styles.metaLabel}>Stack</span>
-                    <span className={styles.metaValue}>
-                      Next.js · Python · TypeScript · Django · Mapbox · AWS
-                    </span>
+                  <div className={styles.terminalBody}>
+                    <div className={styles.terminalRow}>
+                      <span className={styles.terminalPrompt}>whoami</span>
+                      <span className={styles.terminalValue}>
+                        GIS Developer · Technical Consultant
+                      </span>
+                    </div>
+                    <div className={styles.terminalRow}>
+                      <span className={styles.terminalPrompt}>currently</span>
+                      <span className={styles.terminalValue}>
+                        Tech Coordinator · Los Angeles
+                      </span>
+                    </div>
+                    <div className={styles.terminalRow}>
+                      <span className={styles.terminalPrompt}>also building</span>
+                      <span className={styles.terminalValue}>
+                        MixDro · Drop The Map · More Than Jordans
+                      </span>
+                    </div>
+                    <div className={styles.terminalRow}>
+                      <span className={styles.terminalPrompt}>stack</span>
+                      <span className={styles.terminalValue}>
+                        Next.js · Python · TypeScript · Django · Mapbox · AWS
+                      </span>
+                    </div>
+                    <div className={styles.terminalRow}>
+                      <span className={styles.terminalPrompt}>open to</span>
+                      <span className={styles.terminalValue}>
+                        Solutions Engineering · GIS Development · Consulting
+                      </span>
+                    </div>
                   </div>
                 </div>
               </motion.div>
