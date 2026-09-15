@@ -5,8 +5,36 @@ import { motion } from 'framer-motion';
 import HeadshotImg from '../images/jordan-headshot.jpg';
 import GradImg from '../images/jordan-grad.jpg';
 import FleaMarketImg from '../images/jordan-fleamarket.jpg';
+import UmgInternImg from '../images/umgintern.jpg';
+import MoreThanJordansImg from '../images/morethanjordans.jpg';
 import DragoniteImg from '../images/dragonite.png';
+import PhotoStack from '../components/PhotoStack';
 import styles from './home.module.css';
+
+/* ── About photo album (add more any time, up to ~10 works well) ── */
+const albumPhotos = [
+  {
+    src: GradImg,
+    alt: 'Jordan Bautista-Lazo at Lehigh University graduation',
+    caption: 'Lehigh University — CS degree, cap and gown.',
+  },
+  {
+    src: UmgInternImg,
+    alt: 'Award plaque for Summer 2022 Universal Music Group internship',
+    caption:
+      'Summer 2022 — Global Tech Intern at Universal Music Group. Probably where MixDro started.',
+  },
+  {
+    src: MoreThanJordansImg,
+    alt: 'Vintage Michael Jordan Bulls t-shirt from More Than Jordans inventory',
+    caption: 'Actual inventory from More Than Jordans — yes, reselling Jordans is the joke.',
+  },
+  {
+    src: FleaMarketImg,
+    alt: 'Running More Than Jordans at LA flea markets',
+    caption: 'Running the booth at an LA flea market.',
+  },
+];
 
 /* ── Animation variants ── */
 const fadeUp = {
@@ -231,60 +259,9 @@ export default function Home() {
               A bit more<br />about me.
             </motion.h2>
 
-            <div className={styles.aboutGrid}>
-              <motion.div variants={fadeUp} className={styles.aboutPhoto}>
-                <Image
-                  src={GradImg}
-                  alt="Jordan Bautista-Lazo, Lehigh University graduation"
-                  fill
-                  sizes="(max-width: 760px) 90vw, 40vw"
-                  style={{ objectFit: 'cover', objectPosition: 'center 30%' }}
-                />
-              </motion.div>
-
-              <motion.div variants={fadeUp} className={styles.aboutContent}>
-                <div className={styles.terminalCard}>
-                  <div className={styles.terminalHeader}>
-                    <span className={styles.terminalDot} />
-                    <span className={styles.terminalDot} />
-                    <span className={styles.terminalDot} />
-                    <span className={styles.terminalPath}>jordan@portfolio</span>
-                  </div>
-                  <div className={styles.terminalBody}>
-                    <div className={styles.terminalRow}>
-                      <span className={styles.terminalPrompt}>whoami</span>
-                      <span className={styles.terminalValue}>
-                        GIS Developer · Technical Consultant
-                      </span>
-                    </div>
-                    <div className={styles.terminalRow}>
-                      <span className={styles.terminalPrompt}>currently</span>
-                      <span className={styles.terminalValue}>
-                        Tech Coordinator · Los Angeles
-                      </span>
-                    </div>
-                    <div className={styles.terminalRow}>
-                      <span className={styles.terminalPrompt}>also building</span>
-                      <span className={styles.terminalValue}>
-                        MixDro · Drop The Map · More Than Jordans
-                      </span>
-                    </div>
-                    <div className={styles.terminalRow}>
-                      <span className={styles.terminalPrompt}>stack</span>
-                      <span className={styles.terminalValue}>
-                        Next.js · Python · TypeScript · Django · Mapbox · AWS
-                      </span>
-                    </div>
-                    <div className={styles.terminalRow}>
-                      <span className={styles.terminalPrompt}>open to</span>
-                      <span className={styles.terminalValue}>
-                        Solutions Engineering · GIS Development · Consulting
-                      </span>
-                    </div>
-                  </div>
-                </div>
-              </motion.div>
-            </div>
+            <motion.div variants={fadeUp}>
+              <PhotoStack photos={albumPhotos} />
+            </motion.div>
           </motion.div>
         </section>
 

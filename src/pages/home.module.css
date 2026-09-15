@@ -533,25 +533,28 @@
    ABOUT
 ================================ */
 
-.aboutGrid {
-  display: grid;
-  grid-template-columns: 0.85fr 1.15fr;
-  gap: 60px;
-  align-items: start;
+.photoStackWrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
   margin-top: 28px;
 }
 
-@media (max-width: 760px) {
-  .aboutGrid {
-    grid-template-columns: 1fr;
-    gap: 40px;
-  }
-}
-
-.aboutPhoto {
+.photoStack {
   position: relative;
   width: 100%;
+  max-width: 340px;
   aspect-ratio: 4 / 5;
+  border: none;
+  background: none;
+  padding: 0;
+  cursor: pointer;
+}
+
+.photoStackCard {
+  position: absolute;
+  inset: 0;
   border-radius: 18px;
   overflow: hidden;
   border: 1px solid var(--border);
@@ -559,90 +562,33 @@
   box-shadow: 0 24px 60px -30px rgba(0, 0, 0, 0.35);
 }
 
-@media (max-width: 760px) {
-  .aboutPhoto {
-    max-width: 320px;
-    margin: 0 auto;
+.photoStackCaption {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 16px 16px 14px;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.75), transparent);
+  color: #fff;
+  font-size: 0.85rem;
+  line-height: 1.45;
+  text-align: left;
+}
+
+.photoStackHint {
+  font-size: 0.76rem;
+  color: var(--text-faint);
+}
+
+@media (max-width: 700px) {
+  .photoStack {
+    max-width: 260px;
   }
-}
 
-.aboutContent {
-  display: flex;
-  flex-direction: column;
-  gap: 40px;
-}
-
-.aboutText {
-  display: flex;
-  flex-direction: column;
-  gap: 18px;
-}
-
-.aboutText p {
-  font-size: 1rem;
-  color: var(--text-muted);
-  line-height: 1.8;
-}
-
-.terminalCard {
-  border: 1px solid var(--border);
-  border-radius: 12px;
-  background: var(--bg-card);
-  overflow: hidden;
-  box-shadow: 0 24px 60px -30px rgba(0, 0, 0, 0.35);
-  font-family: 'SF Mono', 'Menlo', 'Consolas', 'Liberation Mono', monospace;
-}
-
-.terminalHeader {
-  display: flex;
-  align-items: center;
-  gap: 7px;
-  padding: 10px 14px;
-  background: var(--bg-surface);
-  border-bottom: 1px solid var(--border);
-}
-
-.terminalDot {
-  width: 9px;
-  height: 9px;
-  border-radius: 50%;
-  background: var(--border);
-}
-
-.terminalPath {
-  margin-left: 8px;
-  font-size: 0.72rem;
-  color: var(--text-faint);
-}
-
-.terminalBody {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-  padding: 16px;
-}
-
-.terminalRow {
-  display: grid;
-  grid-template-columns: 132px 1fr;
-  gap: 10px;
-}
-
-.terminalPrompt {
-  font-size: 0.78rem;
-  color: var(--accent);
-  white-space: nowrap;
-}
-
-.terminalPrompt::before {
-  content: '$ ';
-  color: var(--text-faint);
-}
-
-.terminalValue {
-  font-size: 0.82rem;
-  color: var(--text);
-  line-height: 1.5;
+  .photoStackCaption {
+    padding: 12px 12px 10px;
+    font-size: 0.78rem;
+  }
 }
 
 /* ================================
@@ -1048,46 +994,7 @@
     font-size: 0.88rem;
   }
 
-  /* -- about -- */
-  .aboutGrid {
-    grid-template-columns: 1fr;
-    gap: 14px;
-    margin-top: 8px;
-  }
-
-  .aboutPhoto {
-    max-width: 84px;
-    aspect-ratio: 1 / 1;
-    border-radius: 50%;
-    margin: 0 auto;
-  }
-
-  .aboutContent {
-    gap: 12px;
-  }
-
-  .terminalHeader {
-    padding: 8px 12px;
-  }
-
-  .terminalBody {
-    padding: 12px;
-    gap: 10px;
-  }
-
-  .terminalRow {
-    grid-template-columns: 1fr;
-    gap: 2px;
-  }
-
-  .terminalPrompt {
-    font-size: 0.72rem;
-  }
-
-  .terminalValue {
-    font-size: 0.78rem;
-    line-height: 1.4;
-  }
+  /* -- about: photo stack sizing handled in its own rule above -- */
 
   /* -- projects: image-forward 2x2, minimal text, this panel may scroll -- */
   .projectGrid {
