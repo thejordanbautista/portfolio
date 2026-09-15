@@ -302,10 +302,6 @@ export default function Home() {
             <motion.h2 variants={fadeUp} className={styles.sectionTitle}>
               What I've been building.
             </motion.h2>
-            <motion.p variants={fadeUp} className={styles.sectionLead}>
-              Work and side projects, side by side — mapping, music, business
-              tooling, and the occasional game.
-            </motion.p>
 
             <motion.div variants={stagger} className={styles.projectGrid}>
               {projects.map((p, i) => {
@@ -377,8 +373,8 @@ export default function Home() {
               Let's <span className={styles.heroAccent}>connect.</span>
             </motion.h2>
             <motion.p variants={fadeUp} className={styles.contactSub}>
-              Always open to a good conversation — opportunities, collaborations,
-              or just to talk shop.
+              Open to Solutions Engineering, GIS, and consulting roles —
+              reach out if you're hiring or building something worth talking about.
             </motion.p>
 
             <motion.div variants={fadeUp} className={styles.contactCtaRow}>
