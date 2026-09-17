@@ -126,11 +126,11 @@ const projects = [
     description:
       'A POS and inventory management system built for my own vintage resell business, tracking stock, pricing, and event prep across LA flea markets.',
     tech: ['React Native', 'Firebase'],
-    demo: null,
+    demo: 'https://github.com/thejordanbautista/inventory-management',
     accent: 'Vintage Resell',
     image: FleaMarketImg,
     imageAlt: 'Running More Than Jordans at LA flea markets',
-    linkLabel: null,
+    linkLabel: 'View Code',
   },
   {
     badge: 'Side Project',
@@ -282,7 +282,7 @@ export default function Home() {
         </section>
 
         {/* ══════════════ ABOUT ══════════════ */}
-        <section className={slideClass(1)} aria-hidden={active !== 1}>
+        <section className={slideClass(1, styles.slideCentered)} aria-hidden={active !== 1}>
           <motion.div
             className={styles.sectionInner}
             variants={stagger}

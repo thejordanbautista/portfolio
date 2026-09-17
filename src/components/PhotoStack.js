@@ -13,6 +13,16 @@ export default function PhotoStack({ photos }) {
   const go = (delta) => setIndex((i) => (i + delta + count) % count);
   const current = photos[index];
 
+  // Most photos read best close to square, but a strict 1:1 crop chops off
+  // heads/feet on tall portraits or the sides of wide landscapes. Bend the
+  // frame toward the photo's real shape, clamped so it never strays far
+  // from "big and roughly square."
+  const rawRatio =
+    current.src && current.src.width && current.src.height
+      ? current.src.width / current.src.height
+      : 1;
+  const aspect = Math.min(1.25, Math.max(0.8, rawRatio));
+
   return (
     <div className={styles.photoMainWrap}>
       <div className={styles.photoMainFrame}>
@@ -25,7 +35,7 @@ export default function PhotoStack({ photos }) {
           ‹
         </button>
 
-        <div className={styles.photoMainImage}>
+        <div className={styles.photoMainImage} style={{ aspectRatio: aspect }}>
           <AnimatePresence mode="popLayout" initial={false}>
             <motion.div
               key={index}

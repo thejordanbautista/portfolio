@@ -39,7 +39,10 @@
 }
 
 .slideCentered {
-  align-items: center;
+  /* "safe center" centers when content fits, but falls back to flex-start
+     (instead of clipping) if it ever doesn't — belt-and-suspenders on top
+     of the flex-start default above. */
+  align-items: safe center;
 }
 
 .slideActive {
@@ -1044,7 +1047,12 @@
   }
 
   .cardDesc {
-    display: none;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    font-size: 0.74rem;
+    line-height: 1.4;
   }
 
   .cardBottom {
