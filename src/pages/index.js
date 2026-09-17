@@ -105,6 +105,7 @@ const projects = [
     title: 'Drop The Map',
     description:
       'An AI mapping platform — describe the data you want in plain English, and it finds the sources, builds the layers, and renders an interactive map in seconds. No GIS degree required.',
+    shortDescription: 'Describe it. AI builds the map.',
     tech: ['Next.js', 'Mapbox', 'AI/LLM'],
     demo: null,
     accent: 'AI Mapping Software',
@@ -117,6 +118,7 @@ const projects = [
     title: 'MixDro',
     description:
       "A music social platform where artists and fans share the music that actually inspires them — not the algorithm's picks. Built an MVP with SwiftUI/MVVM for iOS, Spotify-connected playback, real-time comments, and a FastAPI backend, plus creator tooling including a rapid Instagram graphic generator.",
+    shortDescription: 'Share music that actually inspires you.',
     tech: ['SwiftUI', 'FastAPI', 'Spotify API'],
     demo: 'https://mixdro.com/',
     accent: 'Music',
@@ -130,6 +132,7 @@ const projects = [
     title: 'More Than Jordans — Inventory System',
     description:
       'A POS and inventory management system built for my own vintage resell business, tracking stock, pricing, and event prep across LA flea markets.',
+    shortDescription: 'POS and inventory system for resellers.',
     tech: ['React Native', 'Firebase'],
     demo: 'https://github.com/thejordanbautista/inventory-management',
     accent: 'Vintage Resell',
@@ -142,6 +145,7 @@ const projects = [
     title: "Who's That Pokémon?",
     description:
       'A web-based Pokémon silhouette guessing game. Pulls live data from PokéAPI and keeps score across rounds.',
+    shortDescription: 'Guess the Pokémon by its silhouette.',
     tech: ['Next.js', 'React', 'PokéAPI'],
     demo: '/dev/pokedexle',
     accent: 'Pop Culture',
@@ -294,11 +298,11 @@ export default function Home() {
             initial="hidden"
             animate={active === 1 ? 'show' : 'hidden'}
           >
-            <motion.p variants={fadeUp} className={styles.sectionLabel}>
+            <motion.p variants={fadeUp} className={`${styles.sectionLabel} ${styles.sectionLabelCentered}`}>
               About
             </motion.p>
-            <motion.h2 variants={fadeUp} className={styles.sectionTitle}>
-              A bit more<br />about me.
+            <motion.h2 variants={fadeUp} className={`${styles.sectionTitle} ${styles.sectionTitleCentered}`}>
+              A few of my<br />favorite moments.
             </motion.h2>
 
             <motion.div variants={fadeUp}>
@@ -357,6 +361,7 @@ export default function Home() {
                       </div>
                       <h3 className={styles.cardTitle}>{p.title}</h3>
                       <p className={styles.cardDesc}>{p.description}</p>
+                      <p className={styles.cardDescShort}>{p.shortDescription}</p>
                       <div className={styles.cardBottom}>
                         <div className={styles.techList}>
                           {p.tech.map((t) => (

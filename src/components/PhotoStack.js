@@ -26,15 +26,6 @@ export default function PhotoStack({ photos }) {
   return (
     <div className={styles.photoMainWrap}>
       <div className={styles.photoMainFrame}>
-        <button
-          type="button"
-          className={`${styles.photoNavBtn} ${styles.photoNavPrev}`}
-          onClick={() => go(-1)}
-          aria-label="Previous photo"
-        >
-          ‹
-        </button>
-
         <div className={styles.photoMainImage} style={{ aspectRatio: aspect }}>
           <AnimatePresence mode="popLayout" initial={false}>
             <motion.div
@@ -55,16 +46,26 @@ export default function PhotoStack({ photos }) {
               />
             </motion.div>
           </AnimatePresence>
-        </div>
 
-        <button
-          type="button"
-          className={`${styles.photoNavBtn} ${styles.photoNavNext}`}
-          onClick={() => go(1)}
-          aria-label="Next photo"
-        >
-          ›
-        </button>
+          {/* Overlaid on the image (not flex siblings) so they can never
+              get squeezed off-screen on narrow viewports. */}
+          <button
+            type="button"
+            className={`${styles.photoNavBtn} ${styles.photoNavPrev}`}
+            onClick={() => go(-1)}
+            aria-label="Previous photo"
+          >
+            ‹
+          </button>
+          <button
+            type="button"
+            className={`${styles.photoNavBtn} ${styles.photoNavNext}`}
+            onClick={() => go(1)}
+            aria-label="Next photo"
+          >
+            ›
+          </button>
+        </div>
       </div>
 
       <AnimatePresence mode="wait" initial={false}>

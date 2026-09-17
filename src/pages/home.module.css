@@ -427,6 +427,14 @@
   margin-bottom: 14px;
 }
 
+.sectionLabelCentered {
+  justify-content: center;
+}
+
+.sectionTitleCentered {
+  text-align: center;
+}
+
 .sectionNum {
   font-size: 0.7rem;
   font-weight: 600;
@@ -549,7 +557,6 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 14px;
   width: 100%;
 }
 
@@ -569,14 +576,20 @@
   inset: 0;
 }
 
+/* Overlaid on the photo itself (not laid out beside it) so they're always
+   visible regardless of viewport width — never pushed off-screen. */
 .photoNavBtn {
-  flex: 0 0 auto;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 2;
   width: 40px;
   height: 40px;
   border-radius: 50%;
-  border: 1px solid var(--border);
-  background: var(--bg-surface);
-  color: var(--text-primary);
+  border: 1px solid rgba(241, 239, 233, 0.25);
+  background: rgba(10, 9, 8, 0.55);
+  backdrop-filter: blur(4px);
+  color: #f1efe9;
   font-size: 1.4rem;
   line-height: 1;
   display: flex;
@@ -586,15 +599,23 @@
   transition: background 0.2s, transform 0.2s;
 }
 
+.photoNavPrev {
+  left: 12px;
+}
+
+.photoNavNext {
+  right: 12px;
+}
+
 .photoNavBtn:hover {
-  background: var(--bg-hover, var(--border));
-  transform: scale(1.06);
+  background: rgba(10, 9, 8, 0.8);
+  transform: translateY(-50%) scale(1.08);
 }
 
 .photoMainCaption {
   font-size: 0.92rem;
   line-height: 1.5;
-  color: var(--text-secondary);
+  color: var(--text-muted);
   text-align: center;
   max-width: 420px;
 }
@@ -608,6 +629,14 @@
     width: 34px;
     height: 34px;
     font-size: 1.2rem;
+  }
+
+  .photoNavPrev {
+    left: 8px;
+  }
+
+  .photoNavNext {
+    right: 8px;
   }
 
   .photoMainCaption {
@@ -810,6 +839,10 @@
   font-size: 0.9rem;
   color: var(--text-muted);
   line-height: 1.65;
+}
+
+.cardDescShort {
+  display: none;
 }
 
 .cardBottom {
@@ -1047,12 +1080,14 @@
   }
 
   .cardDesc {
-    display: -webkit-box;
-    -webkit-line-clamp: 2;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
+    display: none;
+  }
+
+  .cardDescShort {
+    display: block;
     font-size: 0.74rem;
     line-height: 1.4;
+    color: var(--text-muted);
   }
 
   .cardBottom {
