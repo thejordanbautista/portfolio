@@ -6,17 +6,24 @@ import HeadshotImg from '../images/jordan-headshot.jpg';
 import GradImg from '../images/jordan-grad.jpg';
 import FleaMarketImg from '../images/jordan-fleamarket.jpg';
 import UmgInternImg from '../images/umgintern.jpg';
-import MoreThanJordansImg from '../images/morethanjordans.jpg';
 import DragoniteImg from '../images/dragonite.png';
+import YoungMeImg from '../images/young-me-laptop.jpg';
+import MexicoGameImg from '../images/mexico-game-2.jpg';
+import BrotherhoodImg from '../images/brotherhood.jpg';
+import DrWeddingImg from '../images/dr-wedding-scooter.jpg';
+import TokyoShoppingImg from '../images/tokyo-shopping.jpg';
+import WahlidsCartImg from '../images/wahlids-cart.jpg';
+import HsfPanelImg from '../images/hsf-panel.jpg';
+import EsriUcImg from '../images/esri-uc-2026.jpg';
 import PhotoStack from '../components/PhotoStack';
 import styles from './home.module.css';
 
 /* ── About photo album (add more any time, up to ~10 works well) ── */
 const albumPhotos = [
   {
-    src: GradImg,
-    alt: 'Jordan Bautista-Lazo at Lehigh University graduation',
-    caption: 'Lehigh University — B.S. Computer Science.',
+    src: YoungMeImg,
+    alt: 'Young Jordan Bautista-Lazo on a laptop',
+    caption: 'First laptop. Still can’t sit up straight while coding.',
   },
   {
     src: UmgInternImg,
@@ -24,14 +31,45 @@ const albumPhotos = [
     caption: 'Summer 2022 — Global Technology Intern, Universal Music Group.',
   },
   {
-    src: MoreThanJordansImg,
-    alt: 'Vintage Michael Jordan Bulls t-shirt from More Than Jordans inventory',
-    caption: 'Inventory from More Than Jordans, my vintage resale business.',
+    src: HsfPanelImg,
+    alt: 'Speaking on a Hispanic Scholarship Fund panel',
+    caption:
+      'Panelist, Hispanic Scholarship Fund — talking through how to actually use your college years.',
   },
   {
-    src: FleaMarketImg,
-    alt: 'Running More Than Jordans at LA flea markets',
-    caption: 'More Than Jordans, live at an LA flea market.',
+    src: EsriUcImg,
+    alt: 'At the Esri User Conference in San Diego, 2026',
+    caption: 'Esri User Conference, San Diego 2026.',
+  },
+  {
+    src: MexicoGameImg,
+    alt: 'Celebrating a Mexico national team match in Los Angeles',
+    caption: 'Mexico match day in LA.',
+  },
+  {
+    src: GradImg,
+    alt: 'Jordan Bautista-Lazo at Lehigh University graduation',
+    caption: 'Lehigh University — B.S. Computer Science.',
+  },
+  {
+    src: DrWeddingImg,
+    alt: 'Riding a scooter in a suit at a wedding in the Dominican Republic',
+    caption: 'A friend’s wedding in the Dominican Republic — suit on, borrowed scooter.',
+  },
+  {
+    src: TokyoShoppingImg,
+    alt: 'Shopping trip in Tokyo with bags from local stores',
+    caption: 'Shopping spree in Tokyo. Thrifting doesn’t take a vacation.',
+  },
+  {
+    src: BrotherhoodImg,
+    alt: 'Fraternity formal at Lehigh University',
+    caption: 'Fraternity formal, with the brothers.',
+  },
+  {
+    src: WahlidsCartImg,
+    alt: "At Wahlid's Afghan grill food cart",
+    caption: 'Supporting the halal cart hustle.',
   },
 ];
 
@@ -388,8 +426,6 @@ export default function Home() {
                 </a>
               </div>
             </motion.div>
-
-            <p className={styles.footerCopy}>© 2026 Jordan Bautista-Lazo · Built in Los Angeles.</p>
           </motion.div>
         </section>
 
