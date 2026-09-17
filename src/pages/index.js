@@ -30,13 +30,13 @@ const albumPhotos = [
   {
     src: UmgInternImg,
     alt: 'Award plaque for Summer 2022 Universal Music Group internship',
-    caption: 'Summer 2022 — Global Technology Intern, Universal Music Group.',
+    caption: 'Summer 2022: Global Technology Intern, Universal Music Group.',
   },
   {
     src: HsfPanelImg,
     alt: 'Speaking on a Hispanic Scholarship Fund panel',
     caption:
-      'Panelist, Hispanic Scholarship Fund — talking through how to actually use your college years.',
+      'Panelist, Hispanic Scholarship Fund, talking through how to actually use your college years.',
   },
   {
     src: EsriUcImg,
@@ -45,18 +45,18 @@ const albumPhotos = [
   },
   {
     src: MexicoGameImg,
-    alt: 'Celebrating a Mexico national team match in Los Angeles',
-    caption: 'Mexico match day in LA.',
+    alt: 'Celebrating at a Mexico national team World Cup match',
+    caption: '2026 World Cup: Mexico vs. South Korea.',
   },
   {
     src: GradImg,
     alt: 'Jordan Bautista-Lazo at Lehigh University graduation',
-    caption: 'Lehigh University — B.S. Computer Science.',
+    caption: 'Lehigh University, B.S. Computer Science.',
   },
   {
     src: DrWeddingImg,
     alt: 'Riding a scooter in a suit at a wedding in the Dominican Republic',
-    caption: 'A friend’s wedding in the Dominican Republic — suit on, borrowed scooter.',
+    caption: 'A friend’s wedding in the Dominican Republic, suit on, rented scooter.',
   },
   {
     src: TokyoShoppingImg,
@@ -71,7 +71,7 @@ const albumPhotos = [
   {
     src: WahlidsCartImg,
     alt: "At Wahlid's Afghan grill food cart",
-    caption: 'Supporting the halal cart hustle.',
+    caption: 'Supporting the halal cart hustle. IYKYK.',
   },
 ];
 
@@ -104,7 +104,7 @@ const projects = [
     badge: 'Personal Project',
     title: 'Drop The Map',
     description:
-      'An AI mapping platform — describe the data you want in plain English, and it finds the sources, builds the layers, and renders an interactive map in seconds. No GIS degree required.',
+      'An AI mapping platform: describe the data you want in plain English, and it finds the sources, builds the layers, and renders an interactive map in seconds. No GIS degree required.',
     shortDescription: 'Describe it. AI builds the map.',
     tech: ['Next.js', 'Mapbox', 'AI/LLM'],
     demo: null,
@@ -117,7 +117,7 @@ const projects = [
     badge: 'Personal Project',
     title: 'MixDro',
     description:
-      "A music social platform where artists and fans share the music that actually inspires them — not the algorithm's picks. Built an MVP with SwiftUI/MVVM for iOS, Spotify-connected playback, real-time comments, and a FastAPI backend, plus creator tooling including a rapid Instagram graphic generator.",
+      "A music social platform where artists and fans share the music that actually inspires them, not the algorithm's picks. Built an MVP with SwiftUI/MVVM for iOS, Spotify-connected playback, real-time comments, and a FastAPI backend, plus creator tooling including a rapid Instagram graphic generator.",
     shortDescription: 'Share music that actually inspires you.',
     tech: ['SwiftUI', 'FastAPI', 'Spotify API'],
     demo: 'https://mixdro.com/',
@@ -129,7 +129,7 @@ const projects = [
   },
   {
     badge: 'Side Project',
-    title: 'More Than Jordans — Inventory System',
+    title: 'More Than Jordans: Inventory System',
     description:
       'A POS and inventory management system built for my own vintage resell business, tracking stock, pricing, and event prep across LA flea markets.',
     shortDescription: 'POS and inventory system for resellers.',
@@ -164,7 +164,7 @@ export default function Home() {
     setActive(Math.max(0, Math.min(sections.length - 1, index)));
   }, []);
 
-  // Lock page scroll — sections are full-screen panels, not a scrolling flow.
+  // Lock page scroll. Sections are full-screen panels, not a scrolling flow.
   // Restored on unmount so /dev pages scroll normally.
   useEffect(() => {
     const html = document.documentElement;
@@ -220,7 +220,7 @@ export default function Home() {
   return (
     <>
       <Head>
-        <title>Jordan Bautista-Lazo — Software Engineer</title>
+        <title>Jordan Bautista-Lazo | Software Engineer</title>
         <meta
           name="description"
           content="Personal site of Jordan Bautista-Lazo, a software engineer based in Los Angeles."
@@ -259,7 +259,7 @@ export default function Home() {
               </motion.p>
 
               <motion.p variants={fadeUp} className={styles.heroBio}>
-                I turn technical problems into working systems — GIS
+                I turn technical problems into working systems: GIS
                 platforms, web apps, and the automation behind them. My
                 background spans engineering, civic infrastructure, and
                 business, so I can scope what a client needs and build it
@@ -397,8 +397,8 @@ export default function Home() {
               Let's <span className={styles.heroAccent}>connect.</span>
             </motion.h2>
             <motion.p variants={fadeUp} className={styles.contactSub}>
-              Open to Solutions Engineering, GIS, and consulting roles —
-              reach out if you're hiring or building something worth talking about.
+              Open to Solutions Engineering, GIS, and consulting roles.
+              Reach out if you're hiring or building something worth talking about.
             </motion.p>
 
             <motion.div variants={fadeUp} className={styles.contactCtaRow}>
