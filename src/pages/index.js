@@ -16,6 +16,7 @@ import WahlidsCartImg from '../images/wahlids-cart.jpg';
 import HsfPanelImg from '../images/hsf-panel.jpg';
 import EsriUcImg from '../images/esri-uc-2026.jpg';
 import DropTheMapImg from '../images/drop-the-map.png';
+import MixdroLogoImg from '../images/mixdro-logo.png';
 import PhotoStack from '../components/PhotoStack';
 import styles from './home.module.css';
 
@@ -119,7 +120,9 @@ const projects = [
     tech: ['SwiftUI', 'FastAPI', 'Spotify API'],
     demo: 'https://mixdro.com/',
     accent: 'Music',
-    image: null,
+    image: MixdroLogoImg,
+    imageAlt: 'MixDro logo',
+    pixel: true,
     linkLabel: 'Join Waitlist',
   },
   {
