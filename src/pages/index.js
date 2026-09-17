@@ -15,6 +15,7 @@ import TokyoShoppingImg from '../images/tokyo-shopping.jpg';
 import WahlidsCartImg from '../images/wahlids-cart.jpg';
 import HsfPanelImg from '../images/hsf-panel.jpg';
 import EsriUcImg from '../images/esri-uc-2026.jpg';
+import DropTheMapImg from '../images/drop-the-map.png';
 import PhotoStack from '../components/PhotoStack';
 import styles from './home.module.css';
 
@@ -106,7 +107,8 @@ const projects = [
     tech: ['Next.js', 'Mapbox', 'AI/LLM'],
     demo: null,
     accent: 'AI Mapping Software',
-    image: null,
+    image: DropTheMapImg,
+    imageAlt: 'Abstract AI prompt screen generating a map',
     linkLabel: 'Coming Soon',
   },
   {
