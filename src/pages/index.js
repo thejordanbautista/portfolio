@@ -6,7 +6,7 @@ import HeadshotImg from '../images/jordan-headshot.jpg';
 import GradImg from '../images/jordan-grad.jpg';
 import FleaMarketImg from '../images/jordan-fleamarket.jpg';
 import UmgInternImg from '../images/umgintern.jpg';
-import DragoniteImg from '../images/dragonite.png';
+import AccessibilityImg from '../images/accessibility-checker.png';
 import YoungMeImg from '../images/young-me-laptop.jpg';
 import MexicoGameImg from '../images/mexico-game-2.jpg';
 import BrotherhoodImg from '../images/brotherhood.jpg';
@@ -142,17 +142,16 @@ const projects = [
   },
   {
     badge: 'Side Project',
-    title: "Who's That Pokémon?",
+    title: 'Accessibility Checker',
     description:
-      'A web-based Pokémon silhouette guessing game. Pulls live data from PokéAPI and keeps score across rounds.',
-    shortDescription: 'Guess the Pokémon by its silhouette.',
-    tech: ['Next.js', 'React', 'PokéAPI'],
-    demo: '/dev/pokedexle',
-    accent: 'Pop Culture',
-    image: DragoniteImg,
-    imageAlt: 'Dragonite pixel sprite',
-    pixel: true,
-    linkLabel: 'Play',
+      'An accessibility checker with CLI integration, currently in development.',
+    shortDescription: 'Accessibility checks from the command line.',
+    tech: ['CLI'],
+    demo: null,
+    accent: 'Developer Tools',
+    image: AccessibilityImg,
+    imageAlt: 'Abstract terminal showing passed accessibility checks',
+    linkLabel: 'In Progress',
   },
 ];
 
@@ -220,10 +219,10 @@ export default function Home() {
   return (
     <>
       <Head>
-        <title>Jordan Bautista-Lazo | Software Engineer</title>
+        <title>Jordan Bautista-Lazo | Solutions Analyst & Forward Deployed Engineer</title>
         <meta
           name="description"
-          content="Personal site of Jordan Bautista-Lazo, a software engineer based in Los Angeles."
+          content="Personal site of Jordan Bautista-Lazo, a solutions analyst and forward deployed engineer based in Los Angeles."
         />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
@@ -255,7 +254,7 @@ export default function Home() {
               </motion.h1>
 
               <motion.p variants={fadeUp} className={styles.heroRole}>
-                GIS Developer · Technical Consultant
+                Solutions Analyst · Forward Deployed Engineer
               </motion.p>
 
               <motion.p variants={fadeUp} className={styles.heroBio}>
@@ -397,7 +396,7 @@ export default function Home() {
               Let's <span className={styles.heroAccent}>connect.</span>
             </motion.h2>
             <motion.p variants={fadeUp} className={styles.contactSub}>
-              Open to Solutions Engineering, GIS, and consulting roles.
+              Open to Solutions Engineering, Forward Deployed Engineering, and GIS roles.
               Reach out if you're hiring or building something worth talking about.
             </motion.p>
 
